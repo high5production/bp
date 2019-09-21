@@ -1,0 +1,153 @@
+@media all and (max-width: 991px){
+	.text-center{
+		margin-left: inherit;
+	}
+	.navbar-toggler{
+		border: 1px solid #000 !important;
+	}
+	.navbar-toggler:focus, .navbar-toggler:hover{
+		background: inherit !important;
+	}
+	.header-area{
+		padding: 10px;
+	}
+	.subject-area{
+		height: 100% !important;
+	}
+	.sub-head h2{
+		font-size: 20px;
+	}
+	.sub_name h5{
+		font-size: 12px
+	}
+	.nav-link {
+		padding: .5rem 8px;
+	}
+}
+@media all and (max-width: 767px){
+	.logo_img{
+		width: 100%;
+		margin-right: inherit;
+		padding: 0 10%;
+	}
+	.logo_search{
+		width: 100%
+	}
+	.sub-content{
+		border: 2px solid #c1baba;
+		border-bottom: inherit;
+	}
+	.sub_con_img{
+		width: 100%;
+		float: inherit;
+	}
+	.sub_con_text {
+		width: 100%;
+		float: inherit;
+		margin: 2% 0;
+		height: auto;
+		padding: 0px 10px;
+	}
+	.sub_con_btn {
+		margin-bottom: 2%;
+	}
+	.teacher_information {
+		width: 100%;
+		margin-right: 0;
+		float: inherit;
+		border-bottom: inherit;
+	}
+	.student_information{
+		width: 100%;
+		padding-top: 10px;
+	}
+	.teacher_img{
+		width: 100%;
+		padding-right: inherit;
+	}
+	.teacher_des{
+		width: 100%
+	}
+	#selectboxx{
+		margin: .5% !important;
+	}
+	.tab_options{
+		width: 70%;
+	}
+	.personal{
+		width: 70%;
+	}
+	.infr_adress{
+		width: 70%
+	}
+	.infr_head{
+		width: 90%;
+	}
+	.notice_all{
+		padding: 0px 10px;
+	}
+	.sub_con2{
+		width: 100%
+	}
+	.sub_name {
+		text-align: center;
+		width: 100%;
+		height: auto;
+		padding-bottom: 10px;
+	}
+	.sub_con_img img{
+		height: auto;
+	}
+}
+@media all and (max-width: 576px){
+	.logo_search input {
+		width: 74%;
+	}
+}
+@media all and (max-width: 420px){
+	.logo_search{
+		text-align: center;
+	}
+	.logo_search input {
+		width: 80%;
+	}
+	.non_border {
+		border: none;
+		text-align: center;
+	}
+	.non_border button{
+		margin-left: inherit;
+	}
+	.form_option{
+		width: 80%;
+	}
+	.advence_search{
+		margin: 3%;
+	}
+	.infr_adress #selectboxx{
+		width: 100%;
+	}
+	.infr_head h4{
+		padding: 8px;
+		font-size: 16px;
+	}
+	.all_comment{
+		width: 90%;
+	}
+	.form_check {
+		padding-left: inherit;
+	}
+	.infr_adress,.personal{
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+

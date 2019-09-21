@@ -15,11 +15,17 @@
 								FRONTEND ROUTE
 *****************************************************************************/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', 'frontend\websiteController@index');
+Route::get('/search_result', 'frontend\websiteController@search_result')->name('search_result');
+Route::get('/teacher_profile', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
+
+
+
 
 Auth::routes();
+
 
 
 
@@ -50,6 +56,11 @@ Route::get('admin_board_active/{id}', 'backend\adminBoardController@admin_board_
 Route::resource('admin_board', 'backend\adminBoardController');
 
 
+/**------------- ADMIN CCOUNTRY ---------------**/
+Route::get('country_deactive/{id}', 'backend\countryController@country_deactive')->name('country_deactive');
+Route::get('country_active/{id}', 'backend\countryController@country_active')->name('country_active');
+Route::resource('country', 'backend\countryController');
+
 
 
 /**------------- ADMIN DISTRICT ---------------**/
@@ -58,6 +69,10 @@ Route::get('admin_dis_active/{id}', 'backend\adminDistrictController@admin_dis_a
 Route::resource('admin_dis', 'backend\adminDistrictController');
 
 
+/**------------- Police Station ---------------**/
+Route::get('police_station_deactive/{id}', 'backend\policeStationController@police_station_deactive')->name('police_station_deactive');
+Route::get('police_station_active/{id}', 'backend\policeStationController@police_station_active')->name('police_station_active');
+Route::resource('police_station', 'backend\policeStationController');
 
 
 

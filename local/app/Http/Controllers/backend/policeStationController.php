@@ -5,8 +5,8 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\admin_district;
-use App\Models\admin_board;
-class adminDistrictController extends Controller
+use App\Models\police_station;
+class policeStationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,10 @@ class adminDistrictController extends Controller
         $this->middleware('auth');
     }
     public function index()
-    { 
-        $get_board = admin_board::where('status',1)->get();
-        $getdata =   admin_district::get();
-        return view('backend.admin_district', compact('getdata','get_board'));
+    {
+      $getdis  = admin_district::get();
+      $getdata = police_station::get();
+      return view('backend.police_station',compact('getdata','getdis'));
     }
 
     /**
@@ -33,18 +33,21 @@ class adminDistrictController extends Controller
         //
     }
 
-     public function admin_dis_deactive($id){
-        $enactive=admin_district::where('status',1)->where('id',$id)->update([
+
+    public function police_station_deactive($id){
+        $enactive=police_station::where('status',1)->where('id',$id)->update([
           'status' => 0,
         ]);
         return redirect()->back();
-    }
-      public function admin_dis_active($id){
-          $active=admin_district::where('status',0)->where('id',$id)->update([
+      }
+    public function police_station_active($id){
+          $active=police_station::where('status',0)->where('id',$id)->update([
             'status' => 1,
           ]);
           return redirect()->back();
-      }
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -55,7 +58,7 @@ class adminDistrictController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        admin_district::create($input);
+        police_station::create($input);
         return redirect()->back();
     }
 
@@ -67,8 +70,8 @@ class adminDistrictController extends Controller
      */
     public function show($id)
     {
-        $show = admin_district::with('boardname')->find($id);
-        return response()->json($show);
+       $show = police_station::with('dis_name')->find($id);
+       return response()->json($show);
     }
 
     /**
@@ -79,8 +82,8 @@ class adminDistrictController extends Controller
      */
     public function edit($id)
     {
-        $edit = admin_district::with('boardname')->find($id);
-        return response()->json($edit);
+      $edit = police_station::with('dis_name')->find($id);
+      return response()->json($edit);
     }
 
     /**
@@ -92,11 +95,10 @@ class adminDistrictController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $getdata = admin_district::find($id);
-       $input = $request->all();
-       $getdata->fill($input)->save();
-       return redirect()->back();
-
+      $getdata = police_station::find($id);
+      $input   = $request->all();
+      $getdata->fill($input)->save();
+      return redirect()->back();
     }
 
     /**
@@ -107,6 +109,6 @@ class adminDistrictController extends Controller
      */
     public function destroy($id)
     {
-      admin_district::destroy($id);
+      police_station::destroy($id);
     }
 }
