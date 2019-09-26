@@ -12,12 +12,19 @@ body{
 	font-size: 14px;
 	font-family: 'Alegreya Sans', sans-serif;
     font-weight: 400;
+    background: url('images/background.jpg') no-repeat scroll 0 0 / 100% 100%;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+    background-size: cover;
+
+
 }
 .container{
 	max-width: 960px;
 }
 .full_body{
-	background: url('images/background.jpg') no-repeat scroll 0 0 / 100% 100%;
+	
 	
 }
 .nav-link {
@@ -435,6 +442,17 @@ ul,li,ol{
 .sub-head ul li{
 
 	background: url(images/test.jpg)no-repeat scroll 0 0 / 100% 100%;
+}
+.board_color{
+	width: 15px;
+    height: 15px;
+    background: red;
+    overflow: hidden;
+    display: block;
+    float: right;
+    margin-right: 12px;
+    margin-top: 2px;
+
 }
 .sub-head ul li a {
     display: block;
@@ -1073,6 +1091,11 @@ section .section-title {
 
 
 
+/****************************
+         DEVELOPMENT CSS
 
+*******************************/
 
-
+.invalid-feedback{
+	font-size: 14px
+}

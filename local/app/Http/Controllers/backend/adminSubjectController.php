@@ -16,7 +16,7 @@ class adminSubjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('auth');
+         $this->middleware('Admin');
     }
     public function index()
     {
@@ -44,6 +44,7 @@ class adminSubjectController extends Controller
      */
     public function store(Request $request)
     {
+
         $input=$request->all();
         $datainsert= admin_subject::create($input);
         if($datainsert){

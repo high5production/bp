@@ -28,7 +28,26 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function authenticated($request, $user){
+
+        if(auth()->check() && auth()->user()->role == 1){
+            return redirect('/student_deshboard');
+        
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
+            return redirect('/teacher_deshboard');
+        }
+         elseif (auth()->check() && auth()->user()->role == 3){
+            return redirect('/guardian-deshboard');
+        } 
+       elseif (auth()->check() && auth()->user()->role == 4){
+            return redirect('/admin-deshboard');
+        }
+        
+        else{
+            return redirect('/');
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -51,6 +70,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -66,6 +86,8 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => $data['role'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
     }

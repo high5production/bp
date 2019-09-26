@@ -1,46 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Models\admin_subject;
-use App\Models\admin_board;
-use Auth;
-class backendController extends Controller
+use App\teaching_place;
+class teachingPlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct(){
-            $this->middleware('Admin');
-    }
     public function index()
     {
-        $total_user=User::count();
-        $total_subject=admin_subject::count();
-        $admin_board=admin_board::count();
-        return view('backend.index',compact('total_user','total_subject','admin_board'));
+        //
     }
+    
+    public function coaching_place(Request $request){
+        $input = $request->all();
+        teaching_place::create($input);
+        return redirect()->back();
+   }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function view_profile($id){
-      return view('backend.profile');
-    }
-
-
-
-
-
     public function create()
     {
         //
@@ -88,7 +76,11 @@ class backendController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $getdata = teaching_place::find($id);
+        $input = $request->all();
+        $getdata->fill($input)->save();
+        return redirect()->back();
+
     }
 
     /**
@@ -99,6 +91,7 @@ class backendController extends Controller
      */
     public function destroy($id)
     {
-        //
+        teaching_place::destroy($id);
+        return redirect()->back();
     }
 }

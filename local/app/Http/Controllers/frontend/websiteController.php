@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\admin_subject;
 
 class websiteController extends Controller
 {
@@ -22,7 +22,8 @@ class websiteController extends Controller
 // pages
 
     public function search_result(){
-        return view('frontend.search-result');
+        $getdata = admin_subject::where('status',1)->get();
+        return view('frontend.search-result',compact('getdata'));
     }
 
     public function teacher_profile(){
@@ -30,16 +31,9 @@ class websiteController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
+   public function student_profile(){
+    echo "hello";
+   }
 
 
 

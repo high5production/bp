@@ -15,7 +15,7 @@ class adminBoardController extends Controller
      * @return \Illuminate\Http\Response
      */
    public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('Admin');
     }
     public function index()
     {
@@ -48,10 +48,6 @@ class adminBoardController extends Controller
           return redirect()->back();
     }
     
-
-
-
-
     /**
      * Store a newly created resource in storage.
      *

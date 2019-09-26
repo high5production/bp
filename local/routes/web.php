@@ -17,6 +17,7 @@
 
 
 
+
 Route::get('/', 'frontend\websiteController@index');
 Route::get('/search_result', 'frontend\websiteController@search_result')->name('search_result');
 Route::get('/teacher_profile', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
@@ -24,9 +25,43 @@ Route::get('/teacher_profile', 'frontend\websiteController@teacher_profile')->na
 
 
 
+
+
+
+/**------------- STUDENT PANEL ---------------**/
+Route::get('student-notice', 'frontend\studentController@student_notice')->name('student_notice');
+Route::get('student-class', 'frontend\studentController@student_class')->name('student_class');
+Route::get('student_deshboard', 'frontend\studentController@student_deshboard')->name('student_deshboard');
+Route::resource('student', 'frontend\studentController');
+
+
+
+
+/**------------- GUARDIAN PANEL ---------------**/
+route::get('/guardian-deshboard', 'frontend\gurdianController@guardian_deshboard')->name('guardian_deshboard');
+route::resource('/guardian', 'frontend\gurdianController');
+
+
+
+/**------------- TEACHER PANEL ---------------**/
+
+
+
+
+
+
+Route::post('coaching_place', 'frontend\teachingPlaceController@coaching_place')->name('coaching_place');
+Route::post('coaching_place_update/{id}', 'frontend\teachingPlaceController@update')->name('coaching_place_update');
+Route::get('coaching_delete/{id}', 'frontend\teachingPlaceController@destroy')->name('coaching_destroy');
+Route::get('teacher-notice', 'frontend\teacherController@teacher_notice')->name('teacher_notice');
+Route::get('teacher-class', 'frontend\teacherController@teacher_class')->name('teacher_class');
+Route::get('teacher-subscription', 'frontend\teacherController@teacher_subscription')->name('teacher_subscription');
+Route::get('teacher_deshboard', 'frontend\teacherController@teacher_deshboard')->name('teacher_deshboard');
+Route::resource('teacher','frontend\teacherController');
+
 Auth::routes();
 
-
+Route::get('/home','HomeController@index')->name('home');
 
 
 /*************************************************************************
@@ -34,7 +69,7 @@ Auth::routes();
 *****************************************************************************/
 
 
-Route::get('/home','HomeController@index')->name('home');
+Route::get('/admin-deshboard','backend\backendController@index')->name('admin_deshboard');
 Route::get('webbackend/{id}', 'backend\backendController@view_profile')->name('view_profile');
 Route::resource('webbackend', 'backend\backendController');
 
@@ -55,6 +90,22 @@ Route::get('admin_board_deactive/{id}', 'backend\adminBoardController@admin_boar
 Route::get('admin_board_active/{id}', 'backend\adminBoardController@admin_board_active')->name('admin_board_active');
 Route::resource('admin_board', 'backend\adminBoardController');
 
+/**------------- ADMIN STUDENT ---------------**/
+Route::get('admin_student_deactive/{id}', 'backend\adminStudentController@admin_student_deactive')->name('admin_student_deactive');
+Route::get('admin_student_active/{id}', 'backend\adminStudentController@admin_student_active')->name('admin_student_active');
+Route::resource('admin_student', 'backend\adminStudentController');
+
+/**------------- ADMIN TEACHER ---------------**/
+Route::get('admin_teacher_deactive/{id}', 'backend\adminTeacherController@admin_teacher_deactive')->name('admin_teacher_deactive');
+Route::get('admin_teacher_active/{id}', 'backend\adminTeacherController@admin_teacher_active')->name('admin_teacher_active');
+Route::resource('admin_teacher', 'backend\adminTeacherController');
+
+
+/**------------- ADMIN GUEARDIAN ---------------**/
+Route::get('admin_guardina_deactive/{id}', 'backend\adminGuardianController@admin_guardian_deactive')->name('admin_guardian_deactive');
+Route::get('admin_guardian_active/{id}', 'backend\adminGuardianController@admin_guardian_active')->name('admin_teacher_active');
+Route::resource('admin_guardian', 'backend\adminGuardianController');
+
 
 /**------------- ADMIN CCOUNTRY ---------------**/
 Route::get('country_deactive/{id}', 'backend\countryController@country_deactive')->name('country_deactive');
@@ -69,7 +120,7 @@ Route::get('admin_dis_active/{id}', 'backend\adminDistrictController@admin_dis_a
 Route::resource('admin_dis', 'backend\adminDistrictController');
 
 
-/**------------- Police Station ---------------**/
+/**------------- POLICE STATION ---------------**/
 Route::get('police_station_deactive/{id}', 'backend\policeStationController@police_station_deactive')->name('police_station_deactive');
 Route::get('police_station_active/{id}', 'backend\policeStationController@police_station_active')->name('police_station_active');
 Route::resource('police_station', 'backend\policeStationController');

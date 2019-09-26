@@ -1,29 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Models\admin_subject;
-use App\Models\admin_board;
-use Auth;
-class backendController extends Controller
+
+class gurdianController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct(){
-            $this->middleware('Admin');
+   public function __construct(){
+        $this->middleware('Gueardian');
+    }
+
+    public function guardian_deshboard(){
+      return view('frontend/guardian_profile');
     }
     public function index()
-    {
-        $total_user=User::count();
-        $total_subject=admin_subject::count();
-        $admin_board=admin_board::count();
-        return view('backend.index',compact('total_user','total_subject','admin_board'));
+    {  
+        
     }
 
     /**
@@ -31,16 +29,6 @@ class backendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function view_profile($id){
-      return view('backend.profile');
-    }
-
-
-
-
-
     public function create()
     {
         //

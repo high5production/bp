@@ -8,6 +8,9 @@ use App\Models\admin_country;
 
 class countryController extends Controller
 {
+    public function __construct(){
+        $this->middleware('Admin');
+    }
     /**
      * Display a listing of the resource.
      *

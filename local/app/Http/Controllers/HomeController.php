@@ -25,9 +25,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $total_user=User::count();
-        $total_subject=admin_subject::count();
-        $admin_board=admin_board::count();
-        return view('backend.index',compact('total_user','total_subject','admin_board'));
+         if(auth()->check() && auth()->user()->role == 1){
+            return redirect('/student_deshboard');
+        
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
+            return redirect('/teacher_deshboard');
+        }
+        elseif (auth()->check() && auth()->user()->role == 3){
+            return redirect('/guardian-deshboard');
+        } 
+       elseif (auth()->check() && auth()->user()->role == 4){
+            return redirect('/admin-deshboard');
+        }
+        
+        else{
+            return redirect('/');
+        }
     }
 }

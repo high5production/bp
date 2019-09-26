@@ -17,7 +17,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
 
     /**
@@ -25,7 +24,28 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+
+
+   protected function authenticated($request, $user){
+
+        if(auth()->check() && auth()->user()->role == 1){
+            return redirect('/student_deshboard');
+        
+        }
+        elseif (auth()->check() && auth()->user()->role == 2){
+            return redirect('/teacher_deshboard');
+        }
+         elseif (auth()->check() && auth()->user()->role == 3){
+            return redirect('/guardian-deshboard');
+        } 
+       elseif (auth()->check() && auth()->user()->role == 4){
+            return redirect('/admin-deshboard');
+        }
+        
+        else{
+            return redirect('/');
+        }
+       }
 
     /**
      * Create a new controller instance.

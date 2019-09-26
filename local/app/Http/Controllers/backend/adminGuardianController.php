@@ -5,25 +5,31 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Models\admin_subject;
-use App\Models\admin_board;
-use Auth;
-class backendController extends Controller
+class adminGuardianController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct(){
-            $this->middleware('Admin');
-    }
     public function index()
     {
-        $total_user=User::count();
-        $total_subject=admin_subject::count();
-        $admin_board=admin_board::count();
-        return view('backend.index',compact('total_user','total_subject','admin_board'));
+       $getdata = user::where('role',3)->get();
+        return view('backend.admin_guardian', compact('getdata'));
+    }
+
+    public function admin_guardian_deactive($id){
+        $enactive=user::where('status',1)->where('id',$id)->update([
+          'status' => 0,
+        ]);
+        
+        return redirect()->back();
+      }
+      public function admin_guardian_active($id){
+          $active=user::where('status',0)->where('id',$id)->update([
+            'status' => 1,
+          ]);
+          return redirect()->back();
     }
 
     /**
@@ -31,16 +37,6 @@ class backendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function view_profile($id){
-      return view('backend.profile');
-    }
-
-
-
-
-
     public function create()
     {
         //
@@ -99,6 +95,6 @@ class backendController extends Controller
      */
     public function destroy($id)
     {
-        //
+        user::destroy($id);
     }
 }
