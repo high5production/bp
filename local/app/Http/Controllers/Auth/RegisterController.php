@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\teacher_profile;
 
 class RegisterController extends Controller
 {
@@ -83,12 +84,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'role' => $data['role'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
+ 
+     if($user->role == 2){
+       teacher_profile::insert([
+          'user_id'=> $user->id,
+       ]);
+     }
+         return $user;
+     
     }
 }

@@ -624,6 +624,7 @@ ul,li,ol{
 	text-align: right;
 	height: 172px;
 }
+
 .sub_name h5{
 	text-transform: capitalize;
 	font-size: 16px;
@@ -649,6 +650,10 @@ ul,li,ol{
 	text-align: center;
 	line-height: 24px;
 	margin: 2px;
+}
+.sub_name ul li a i {
+    line-height: 26px;
+    display: block;
 }
 .sub_con_text {
 	width: 64%;

@@ -15,13 +15,14 @@ class CreateTeachingPlacesTable extends Migration
     {
         Schema::create('teaching_places', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
             $table->string('coaching_name');
             $table->string('house');
             $table->string('Landmark');
             $table->string('post_office');
             $table->string('post_code');
             $table->string('map');
-            $table->string('area');
+            $table->longText('area');
             $table->string('district');
             $table->string('country');
             $table->timestamps();

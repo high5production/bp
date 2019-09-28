@@ -20,11 +20,7 @@
 
 Route::get('/', 'frontend\websiteController@index');
 Route::get('/search_result', 'frontend\websiteController@search_result')->name('search_result');
-Route::get('/teacher_profile', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
-
-
-
-
+Route::get('/teacher_profile{id}', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
 
 
 
@@ -46,13 +42,18 @@ route::resource('/guardian', 'frontend\gurdianController');
 /**------------- TEACHER PANEL ---------------**/
 
 
-
-
-
-
+ // teacher choaching
 Route::post('coaching_place', 'frontend\teachingPlaceController@coaching_place')->name('coaching_place');
 Route::post('coaching_place_update/{id}', 'frontend\teachingPlaceController@update')->name('coaching_place_update');
 Route::get('coaching_delete/{id}', 'frontend\teachingPlaceController@destroy')->name('coaching_destroy');
+
+ // teacher traning
+Route::post('t_traning', 'frontend\teacherTraningController@store')->name('t_traning');
+Route::post('t_traning_update/{id}', 'frontend\teacherTraningController@update')->name('t_traning_update');
+Route::get('t_traning_delete/{id}', 'frontend\teacherTraningController@destroy')->name('t_traning_destroy');
+
+
+
 Route::get('teacher-notice', 'frontend\teacherController@teacher_notice')->name('teacher_notice');
 Route::get('teacher-class', 'frontend\teacherController@teacher_class')->name('teacher_class');
 Route::get('teacher-subscription', 'frontend\teacherController@teacher_subscription')->name('teacher_subscription');

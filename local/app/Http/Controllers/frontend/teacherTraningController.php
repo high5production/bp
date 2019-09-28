@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\backend;
+namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use DB;
-use app\teacher_profile;
-class adminTeacherController extends Controller
+use App\teacher_traning;
+class teacherTraningController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,23 +14,9 @@ class adminTeacherController extends Controller
      */
     public function index()
     {
-        $getdata = user::where('role',2)->get();
-        return view('backend.admin_teacher',compact('getdata'));
+        //
     }
 
-     public function admin_teacher_deactive($id){
-        $enactive=user::where('status',1)->where('id',$id)->update([
-          'status' => 0,
-        ]);
-        
-        return redirect()->back();
-      }
-      public function admin_teacher_active($id){
-          $active=user::where('status',0)->where('id',$id)->update([
-            'status' => 1,
-          ]);
-          return redirect()->back();
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -51,7 +35,9 @@ class adminTeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $input = $request->all();
+       teacher_traning::create($input);
+       return redirect()->back();
     }
 
     /**
@@ -85,7 +71,10 @@ class adminTeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $getdata = teacher_traning::find($id);
+        $input = $request->all();
+        $getdata->fill($input)->save();
+        return redirect()->back();
     }
 
     /**
@@ -96,9 +85,7 @@ class adminTeacherController extends Controller
      */
     public function destroy($id)
     {
-        user::destroy($id);
-        DB::table('teacher_profiles')->where('user_id', $id)->delete();
+        teacher_traning::destroy($id);
         return redirect()->back();
-
     }
 }
