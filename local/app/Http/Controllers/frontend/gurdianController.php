@@ -4,7 +4,9 @@ namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\admin_area;
+use App\guardian_profile;
+use Auth;
 class gurdianController extends Controller
 {
     /**
@@ -17,7 +19,10 @@ class gurdianController extends Controller
     }
 
     public function guardian_deshboard(){
-      return view('frontend/guardian_profile');
+      $profile_id = Auth::user()->id;
+      $allarea = admin_area::where('status',1)->get();
+      $g_profile = guardian_profile::where('user_id',$profile_id)->first();
+      return view('frontend/guardian_profile', compact('allarea','profile_id','g_profile'));
     }
     public function index()
     {  
@@ -42,7 +47,7 @@ class gurdianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -76,7 +81,10 @@ class gurdianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $getdata = guardian_profile::where('user_id', $id)->first();
+        $input =  $request->all();
+        $getdata->fill($input)->save();
+        return redirect()->back();
     }
 
     /**

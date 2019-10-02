@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class police_station extends Model
 {
     protected $table = "police_stations";
-    protected $fillable = ['police_station','district_id','status'];
+    protected $fillable = ['police_station','city_id','status'];
 
-    public function dis_name(){
-    	return $this->belongsTo('App\Models\admin_district','district_id');
+    public function city(){
+    	return $this->belongsTo('App\Models\admin_city','city_id');
     }
 }

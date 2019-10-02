@@ -20,6 +20,11 @@ body{
 
 
 }
+
+
+
+
+
 .container{
 	max-width: 960px;
 }
@@ -444,14 +449,16 @@ ul,li,ol{
 	background: url(images/test.jpg)no-repeat scroll 0 0 / 100% 100%;
 }
 .board_color{
-	width: 15px;
-    height: 15px;
-    background: red;
+    width: 15px;
+    height: 100%;
     overflow: hidden;
+    position: absolute;
     display: block;
     float: right;
     margin-right: 12px;
     margin-top: 2px;
+    right: -15px;
+    top: -2px;
 
 }
 .sub-head ul li a {
@@ -463,6 +470,8 @@ ul,li,ol{
     padding-left: 20px;
     border-radius: 4px;
     border: 2px solid #41bfb4;
+    position: relative;
+    overflow: hidden
 }
 .sub_head22 ul li a {
 	margin-bottom: inherit;
@@ -1104,3 +1113,4 @@ section .section-title {
 .invalid-feedback{
 	font-size: 14px
 }
+

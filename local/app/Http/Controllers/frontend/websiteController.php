@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\admin_subject;
 use App\teacher_profile;
 use App\teacher_traning;
+use App\teaching_place;
 class websiteController extends Controller
 {
     /**
@@ -24,14 +25,14 @@ class websiteController extends Controller
 
     public function search_result(){
         $all_t_profile = teacher_profile::where('payment_status',1)->get();
-        $getdata = admin_subject::where('status',1)->get();
-        return view('frontend.search-result',compact('getdata','all_t_profile'));
+        return view('frontend.search-result',compact('all_t_profile'));
     }
 
     public function teacher_profile($id){
         $view_profile = teacher_profile::find($id);
-        $view_t_traning = teacher_traning::get();
-        return view('frontend.teacher_profile',compact('view_profile','view_t_traning'));
+        $view_t_traning = teacher_traning::where('user_id',$view_profile->user_id)->get();
+        $teaching_place = teaching_place::where('user_id',$view_profile->user_id)->get();
+        return view('frontend.teacher_profile',compact('view_profile','view_t_traning','teaching_place'));
     }
 
 

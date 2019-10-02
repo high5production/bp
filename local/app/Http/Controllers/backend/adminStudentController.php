@@ -5,6 +5,8 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\student_profile;
+use DB;
 class adminStudentController extends Controller
 {
     /**
@@ -101,5 +103,7 @@ class adminStudentController extends Controller
     public function destroy($id)
     {
        user::destroy($id);
+       DB::table('student_profiles')->where('user_id', $id)->delete();
+        return redirect()->back();
     }
 }

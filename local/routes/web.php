@@ -19,6 +19,9 @@
 
 
 Route::get('/', 'frontend\websiteController@index');
+Route::get('/student-list', function(){
+     return view('frontend.student_list');
+});
 Route::get('/search_result', 'frontend\websiteController@search_result')->name('search_result');
 Route::get('/teacher_profile{id}', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
 
@@ -42,7 +45,7 @@ route::resource('/guardian', 'frontend\gurdianController');
 /**------------- TEACHER PANEL ---------------**/
 
 
- // teacher choaching
+ // teacher coaching
 Route::post('coaching_place', 'frontend\teachingPlaceController@coaching_place')->name('coaching_place');
 Route::post('coaching_place_update/{id}', 'frontend\teachingPlaceController@update')->name('coaching_place_update');
 Route::get('coaching_delete/{id}', 'frontend\teachingPlaceController@destroy')->name('coaching_destroy');
@@ -120,12 +123,22 @@ Route::get('admin_dis_deactive/{id}', 'backend\adminDistrictController@admin_dis
 Route::get('admin_dis_active/{id}', 'backend\adminDistrictController@admin_dis_active')->name('admin_dis_active');
 Route::resource('admin_dis', 'backend\adminDistrictController');
 
+/**------------- ADMIN CITY ---------------**/
+Route::get('admin_city_deactive/{id}', 'backend\adminCityController@admin_city_deactive')->name('admin_city_deactive');
+Route::get('admin_city_active/{id}', 'backend\adminCityController@admin_city_active')->name('admin_city_active');
+Route::resource('admin_city', 'backend\adminCityController');
+
 
 /**------------- POLICE STATION ---------------**/
 Route::get('police_station_deactive/{id}', 'backend\policeStationController@police_station_deactive')->name('police_station_deactive');
 Route::get('police_station_active/{id}', 'backend\policeStationController@police_station_active')->name('police_station_active');
 Route::resource('police_station', 'backend\policeStationController');
 
+
+/**-------------  AREA ---------------**/
+Route::get('area_deactive/{id}', 'backend\adminAreaController@area_deactive')->name('area_deactive');
+Route::get('area_active/{id}', 'backend\adminAreaController@area_active')->name('area_active');
+Route::resource('admin_area', 'backend\adminAreaController');
 
 
 

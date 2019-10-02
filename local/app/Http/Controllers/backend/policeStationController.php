@@ -4,7 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\admin_district;
+use App\Models\admin_city;
 use App\Models\police_station;
 class policeStationController extends Controller
 {
@@ -18,9 +18,9 @@ class policeStationController extends Controller
     }
     public function index()
     {
-      $getdis  = admin_district::get();
+      $getcity  = admin_city::get();
       $getdata = police_station::get();
-      return view('backend.police_station',compact('getdata','getdis'));
+      return view('backend.police_station',compact('getdata','getcity'));
     }
 
     /**
@@ -68,11 +68,6 @@ class policeStationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-       $show = police_station::with('dis_name')->find($id);
-       return response()->json($show);
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,7 +77,7 @@ class policeStationController extends Controller
      */
     public function edit($id)
     {
-      $edit = police_station::with('dis_name')->find($id);
+      $edit = police_station::with('city')->find($id);
       return response()->json($edit);
     }
 

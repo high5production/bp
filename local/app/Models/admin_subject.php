@@ -16,6 +16,5 @@ class admin_subject extends Model
      return $this->belongsTo('App\Models\admin_board','board_id');
    }
 
-
 }
 

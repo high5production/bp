@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\admin_country;
 use App\Models\admin_district;
 use App\Models\admin_board;
 class adminDistrictController extends Controller
@@ -18,9 +19,9 @@ class adminDistrictController extends Controller
     }
     public function index()
     { 
-        $get_board = admin_board::where('status',1)->get();
+        $all_countrys = admin_country::where('status',1)->get();
         $getdata =   admin_district::get();
-        return view('backend.admin_district', compact('getdata','get_board'));
+        return view('backend.admin_district', compact('getdata','all_countrys'));
     }
 
     /**
@@ -67,8 +68,7 @@ class adminDistrictController extends Controller
      */
     public function show($id)
     {
-        $show = admin_district::with('boardname')->find($id);
-        return response()->json($show);
+       
     }
 
     /**
@@ -79,7 +79,7 @@ class adminDistrictController extends Controller
      */
     public function edit($id)
     {
-        $edit = admin_district::with('boardname')->find($id);
+        $edit = admin_district::with('country_name')->find($id);
         return response()->json($edit);
     }
 

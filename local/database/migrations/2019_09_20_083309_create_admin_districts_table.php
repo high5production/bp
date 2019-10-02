@@ -16,7 +16,7 @@ class CreateAdminDistrictsTable extends Migration
         Schema::create('admin_districts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('district_name');
-            $table->integer('board_id');
+            $table->integer('country_id');
             $table->string('status')->default('1');
             $table->timestamps();
         });

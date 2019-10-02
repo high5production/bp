@@ -18,11 +18,13 @@ class CreateTeachingPlacesTable extends Migration
             $table->integer('user_id');
             $table->string('coaching_name');
             $table->string('house');
+            $table->string('road_no');
             $table->string('Landmark');
             $table->string('post_office');
             $table->string('post_code');
             $table->string('map');
             $table->longText('area');
+            $table->string('p_station');
             $table->string('district');
             $table->string('country');
             $table->timestamps();

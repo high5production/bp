@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\teacher_profile;
+use App\student_profile;
+use App\guardian_profile;
 
 class RegisterController extends Controller
 {
@@ -92,12 +94,25 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
  
-     if($user->role == 2){
+     if($user->role == 1){
+       student_profile::insert([
+          'user_id'=> $user->id,
+          'student_id'=> mt_rand(1, 999999),
+       ]);
+     }
+
+    if($user->role == 2){
        teacher_profile::insert([
           'user_id'=> $user->id,
        ]);
      }
-         return $user;
+     if($user->role == 3){
+       guardian_profile::insert([
+          'user_id'=> $user->id,
+          'guardian_id'=> mt_rand(1, 999999),
+       ]);
+     }
+    return $user;
      
     }
 }
