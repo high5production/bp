@@ -17,11 +17,24 @@
 
 
 
-
 Route::get('/', 'frontend\websiteController@index');
+
+
+
+// website country, dis, city, area_deactive
+
+Route::get('mycountry', 'frontend\websiteController@mycountry');
+Route::get('mydistrict/{id}','frontend\websiteController@mydistrict')->name('mydistrict');
+Route::get('mycity/{id}','frontend\websiteController@mycity')->name('mycity');
+
+
+
+
 Route::get('/student-list', function(){
      return view('frontend.student_list');
 });
+
+
 Route::get('/search_result', 'frontend\websiteController@search_result')->name('search_result');
 Route::get('/teacher_profile{id}', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
 

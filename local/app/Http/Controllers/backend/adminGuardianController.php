@@ -96,5 +96,6 @@ class adminGuardianController extends Controller
     public function destroy($id)
     {
         user::destroy($id);
+        DB::table('guardian_profiles')->where('user_id', $id)->delete();
     }
 }

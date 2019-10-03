@@ -36,6 +36,7 @@ class CreateGuardianProfilesTable extends Migration
             $table->string('g2_address')->nullable();
             $table->string('g2_nid')->nullable();
             $table->integer('g2_area')->nullable();
+            $table->integer('g2_profession')->nullable();
             $table->integer('g2_ps_id')->nullable();
             $table->integer('g2_city')->nullable();
             $table->integer('g2_district')->nullable();

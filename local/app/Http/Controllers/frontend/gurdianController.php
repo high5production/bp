@@ -4,8 +4,13 @@ namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\admin_area;
 use App\guardian_profile;
+use App\Models\admin_country;
+use App\Models\admin_district;
+use App\Models\admin_city;
+use App\Models\police_station;
+use App\Models\admin_area;
+
 use Auth;
 class gurdianController extends Controller
 {
@@ -20,9 +25,23 @@ class gurdianController extends Controller
 
     public function guardian_deshboard(){
       $profile_id = Auth::user()->id;
+      $g_country = admin_country::where('status',1)->get();
+      $g_district = admin_district::where('status',1)->get();
+      $g_city = admin_city::where('status',1)->get();
+      $gp_station = police_station::where('status',1)->get();
       $allarea = admin_area::where('status',1)->get();
       $g_profile = guardian_profile::where('user_id',$profile_id)->first();
-      return view('frontend/guardian_profile', compact('allarea','profile_id','g_profile'));
+      return view('frontend/guardian_profile', compact(
+        'allarea',
+        'profile_id',
+        'g_profile',
+        'g_country',
+        'g_district',
+        'g_city',
+        'gp_station'
+
+
+    ));
     }
     public function index()
     {  
