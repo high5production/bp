@@ -15,6 +15,7 @@ class CreateTeacherProfilesTable extends Migration
     {
         Schema::create('teacher_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('teacher_id');
             $table->integer('user_id');
             $table->string('type')->nullable();
             $table->string('photo')->default('noimage.jpg');

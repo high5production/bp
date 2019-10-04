@@ -57,10 +57,6 @@ class teacherController extends Controller
    public function teacher_class(){
       return view('frontend.teacher_class');
    }
-    public function teacher_notice(){
-      return view('frontend.teacher_notice');
-   }
-
 
     public function index()
     {

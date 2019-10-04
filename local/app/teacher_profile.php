@@ -9,6 +9,7 @@ class teacher_profile extends Model
     protected $table = "teacher_profiles";
     protected $fillable = [
           
+            'teacher_id',
             'user_id',
             'type',
             'photo',

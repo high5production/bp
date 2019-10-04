@@ -4,10 +4,10 @@ namespace App\Http\Controllers\frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\teacher_traning;
-class teacherTraningController extends Controller
+use App\teacher_notice;
+class teacherNoticeController extends Controller
 {
-     public function __construct(){
+    public function __construct(){
         $this->middleware('Teacher');
     }
     /**
@@ -17,8 +17,30 @@ class teacherTraningController extends Controller
      */
     public function index()
     {
-        //
+      $allnotice = teacher_notice::orderBy('id', 'DESC')->get();
+      return view('frontend.teacher_notice', compact('allnotice'));
     }
+
+
+
+
+    public function t_notice_deactive($id){
+        $enactive=teacher_notice::where('status',1)->where('id',$id)->update([
+          'status' => 0,
+        ]);
+        return redirect()->back();
+     }
+      public function t_notice_active($id){
+          $active=teacher_notice::where('status',0)->where('id',$id)->update([
+            'status' => 1,
+          ]);
+          return redirect()->back();
+      }
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,7 +49,7 @@ class teacherTraningController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -39,8 +61,9 @@ class teacherTraningController extends Controller
     public function store(Request $request)
     {
        $input = $request->all();
-       teacher_traning::create($input);
+       teacher_notice::create($input);
        return redirect()->back();
+
     }
 
     /**
@@ -62,7 +85,8 @@ class teacherTraningController extends Controller
      */
     public function edit($id)
     {
-        //
+        $show=teacher_notice::find($id);
+       return response()->json($show);
     }
 
     /**
@@ -74,7 +98,7 @@ class teacherTraningController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $getdata = teacher_traning::find($id);
+        $getdata = teacher_notice::find($id);
         $input = $request->all();
         $getdata->fill($input)->save();
         return redirect()->back();
@@ -88,7 +112,7 @@ class teacherTraningController extends Controller
      */
     public function destroy($id)
     {
-        teacher_traning::destroy($id);
+        teacher_notice::destroy($id);
         return redirect()->back();
     }
 }

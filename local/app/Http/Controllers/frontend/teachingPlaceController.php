@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\teaching_place;
 class teachingPlaceController extends Controller
 {
+     public function __construct(){
+        $this->middleware('Teacher');
+    }
     /**
      * Display a listing of the resource.
      *

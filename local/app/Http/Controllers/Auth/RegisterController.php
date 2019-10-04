@@ -103,6 +103,7 @@ class RegisterController extends Controller
 
     if($user->role == 2){
        teacher_profile::insert([
+          'teacher_id'=> mt_rand(1, 999999),
           'user_id'=> $user->id,
        ]);
      }

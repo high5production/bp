@@ -37,6 +37,7 @@ Route::get('/student-list', function(){
 
 Route::get('/search_result', 'frontend\websiteController@search_result')->name('search_result');
 Route::get('/teacher_profile{id}', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
+Route::get('/entroll-student-list', 'frontend\websiteController@enroll_student_list')->name('enroll_student_list');
 
 
 
@@ -56,7 +57,11 @@ route::resource('/guardian', 'frontend\gurdianController');
 
 
 /**------------- TEACHER PANEL ---------------**/
+// teacher notice
 
+Route::get('t_notice_deactive/{id}', 'frontend\teacherNoticeController@t_notice_deactive')->name('t_notice_deactive');
+Route::get('t_notice_active/{id}', 'frontend\teacherNoticeController@t_notice_active')->name('t_notice_active');
+Route::resource('/teacher-notice', 'frontend\teacherNoticeController');
 
  // teacher coaching
 Route::post('coaching_place', 'frontend\teachingPlaceController@coaching_place')->name('coaching_place');
@@ -70,7 +75,7 @@ Route::get('t_traning_delete/{id}', 'frontend\teacherTraningController@destroy')
 
 
 
-Route::get('teacher-notice', 'frontend\teacherController@teacher_notice')->name('teacher_notice');
+
 Route::get('teacher-class', 'frontend\teacherController@teacher_class')->name('teacher_class');
 Route::get('teacher-subscription', 'frontend\teacherController@teacher_subscription')->name('teacher_subscription');
 Route::get('teacher_deshboard', 'frontend\teacherController@teacher_deshboard')->name('teacher_deshboard');

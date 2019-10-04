@@ -80,6 +80,10 @@ class websiteController extends Controller
         return view('frontend.teacher_profile',compact('view_profile','view_t_traning','teaching_place'));
     }
 
+    public function enroll_student_list(){
+        return view('frontend.student_list');
+    }
+
 
    public function student_profile(){
     echo "hello";
