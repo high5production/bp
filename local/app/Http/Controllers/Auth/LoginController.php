@@ -29,11 +29,13 @@ class LoginController extends Controller
    protected function authenticated($request, $user){
 
         if(auth()->check() && auth()->user()->role == 1){
-            return redirect('/student_deshboard');
+            //return redirect('/student_deshboard');
+           // redirect()->intended();
         
         }
         elseif (auth()->check() && auth()->user()->role == 2){
             return redirect('/teacher_deshboard');
+
         }
          elseif (auth()->check() && auth()->user()->role == 3){
             return redirect('/guardian-deshboard');

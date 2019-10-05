@@ -4,6 +4,8 @@ namespace App\Http\Controllers\frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Auth;
+use App\student_enroll;
 use App\teacher_profile;
 use App\teacher_traning;
 use App\teaching_place;
@@ -74,20 +76,17 @@ class websiteController extends Controller
     }
 
     public function teacher_profile($id){
+
         $view_profile = teacher_profile::find($id);
         $view_t_traning = teacher_traning::where('user_id',$view_profile->user_id)->get();
         $teaching_place = teaching_place::where('user_id',$view_profile->user_id)->get();
-        return view('frontend.teacher_profile',compact('view_profile','view_t_traning','teaching_place'));
+        return view('frontend.teacher_profile',compact(
+            'view_profile',
+            'view_t_traning',
+            'teaching_place'
+        ));
     }
 
-    public function enroll_student_list(){
-        return view('frontend.student_list');
-    }
-
-
-   public function student_profile(){
-    echo "hello";
-   }
 
 
 

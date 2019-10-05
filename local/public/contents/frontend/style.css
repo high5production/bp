@@ -60,6 +60,10 @@ button:active
 {
 	background:var(--main-hover-color);
 	outline:0;
+	box-shadow: 0px
+}
+.btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 0px rgba(38,143,255,.5);
 }
 
 h1,h2,h3,h4,h5,h6,p,blockquote{

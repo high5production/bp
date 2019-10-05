@@ -20,6 +20,21 @@ class adminAreaController extends Controller
         return view('backend.admin_area', compact('getdata','policestations'));
     }
 
+
+    public function area_deactive($id){
+        $enactive=admin_area::where('status',1)->where('id',$id)->update([
+          'status' => 0,
+        ]);
+        return redirect()->back();
+      }
+    public function area_active($id){
+          $active=admin_area::where('status',0)->where('id',$id)->update([
+            'status' => 1,
+          ]);
+          return redirect()->back();
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

@@ -15,6 +15,7 @@ use App\techer_education;
 use App\teacher_profile;
 use App\teaching_place;
 use App\teacher_traning;
+use App\student_enroll;
 use Image;
 
 class teacherController extends Controller
@@ -57,6 +58,13 @@ class teacherController extends Controller
    public function teacher_class(){
       return view('frontend.teacher_class');
    }
+
+    public function student_enroll_list(){
+          $profile_id = Auth::user()->id;
+          $all_enroll_student = student_enroll::where('teacher_id', $profile_id)->get();
+          return view('frontend.student_list', compact('all_enroll_student'));
+    }
+
 
     public function index()
     {

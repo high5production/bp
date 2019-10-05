@@ -19,7 +19,8 @@
 
 Route::get('/', 'frontend\websiteController@index');
 
-
+  // TEACHER SEARCH ROUTE
+Route::any('serach','frontend\searchController@index')->name('search');
 
 // website country, dis, city, area_deactive
 
@@ -28,16 +29,17 @@ Route::get('mydistrict/{id}','frontend\websiteController@mydistrict')->name('myd
 Route::get('mycity/{id}','frontend\websiteController@mycity')->name('mycity');
 
 
-
-
-Route::get('/student-list', function(){
-     return view('frontend.student_list');
+Route::group(['middleware' => 'auth'],function(){
+   Route::post('student_enroll', 'frontend\enrollController@student_enroll')->name('student_enroll');
 });
+
+
+
 
 
 Route::get('/search_result', 'frontend\websiteController@search_result')->name('search_result');
 Route::get('/teacher_profile{id}', 'frontend\websiteController@teacher_profile')->name('teacher_profile');
-Route::get('/entroll-student-list', 'frontend\websiteController@enroll_student_list')->name('enroll_student_list');
+
 
 
 
@@ -79,6 +81,8 @@ Route::get('t_traning_delete/{id}', 'frontend\teacherTraningController@destroy')
 Route::get('teacher-class', 'frontend\teacherController@teacher_class')->name('teacher_class');
 Route::get('teacher-subscription', 'frontend\teacherController@teacher_subscription')->name('teacher_subscription');
 Route::get('teacher_deshboard', 'frontend\teacherController@teacher_deshboard')->name('teacher_deshboard');
+
+Route::get('student_enroll_list', 'frontend\teacherController@student_enroll_list')->name('student_enroll_list');
 Route::resource('teacher','frontend\teacherController');
 
 Auth::routes();

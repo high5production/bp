@@ -22,7 +22,7 @@ class Gueardian
          }
          else
          {
-              return redirect('/');
+              return redirect('/login');
          }
         return $next($request);
     }

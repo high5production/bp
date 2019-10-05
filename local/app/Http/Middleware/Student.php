@@ -22,7 +22,7 @@ class Student
          }
          else
          {
-              return redirect('/');
+              return redirect('/login');
          }
         return $next($request);
     }

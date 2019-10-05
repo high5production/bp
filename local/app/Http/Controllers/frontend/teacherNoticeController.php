@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\teacher_notice;
+use Auth;
 class teacherNoticeController extends Controller
 {
     public function __construct(){
@@ -17,7 +18,8 @@ class teacherNoticeController extends Controller
      */
     public function index()
     {
-      $allnotice = teacher_notice::orderBy('id', 'DESC')->get();
+      $profile_id = Auth::user()->id;
+      $allnotice = teacher_notice::where('user_id', $profile_id)->orderBy('id', 'DESC')->get();
       return view('frontend.teacher_notice', compact('allnotice'));
     }
 
