@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2019 at 03:43 PM
+-- Generation Time: Oct 15, 2019 at 12:36 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -71,7 +71,10 @@ INSERT INTO `admin_areas` (`id`, `area_name`, `police_station_id`, `status`, `cr
 (27, 'Dhanmondi Road 14', 24, 1, '2019-10-02 09:15:32', '2019-10-02 09:15:32'),
 (28, 'Dhanmondi Road 14A', 24, 1, '2019-10-02 09:15:43', '2019-10-02 09:15:43'),
 (29, 'Dhanmondi Road 15', 24, 1, '2019-10-02 09:16:02', '2019-10-02 09:16:02'),
-(30, 'Dhanmondi Road 15A', 24, 1, '2019-10-02 09:16:11', '2019-10-02 09:16:11');
+(30, 'Dhanmondi Road 15A', 24, 1, '2019-10-02 09:16:11', '2019-10-02 09:16:11'),
+(31, 'testing area', 63, 1, '2019-10-08 03:34:05', '2019-10-08 03:34:05'),
+(32, 'Boaldhar', 64, 1, '2019-10-08 03:41:23', '2019-10-08 03:41:23'),
+(33, 'Bisrampur', 65, 1, '2019-10-08 03:57:36', '2019-10-08 03:57:36');
 
 -- --------------------------------------------------------
 
@@ -120,7 +123,9 @@ CREATE TABLE `admin_cities` (
 INSERT INTO `admin_cities` (`id`, `city_name`, `district_id`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Dhaka', '10', 1, '2019-10-02 08:31:57', '2019-10-02 08:31:57'),
 (2, 'Narayangonj', '10', 1, '2019-10-02 08:32:19', '2019-10-02 08:32:19'),
-(3, 'Gazipur', '10', 1, '2019-10-02 08:32:37', '2019-10-02 08:32:37');
+(3, 'Gazipur', '10', 1, '2019-10-02 08:32:37', '2019-10-02 08:32:37'),
+(4, 'Baliadangi', '17', 1, '2019-10-08 03:40:38', '2019-10-08 03:40:38'),
+(5, 'Pirgonj', '17', 1, '2019-10-08 03:56:18', '2019-10-08 03:56:18');
 
 -- --------------------------------------------------------
 
@@ -131,6 +136,7 @@ INSERT INTO `admin_cities` (`id`, `city_name`, `district_id`, `status`, `created
 CREATE TABLE `admin_countries` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `country_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -140,16 +146,9 @@ CREATE TABLE `admin_countries` (
 -- Dumping data for table `admin_countries`
 --
 
-INSERT INTO `admin_countries` (`id`, `country_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Bangladesh', 1, '2019-09-20 21:08:59', '2019-10-02 08:21:52'),
-(3, 'Bhutan', 1, '2019-09-25 06:39:44', '2019-10-02 08:23:47'),
-(4, 'India', 1, '2019-09-25 06:39:50', '2019-10-02 08:24:04'),
-(6, 'Indonesia', 1, '2019-09-25 06:40:02', '2019-10-02 08:26:09'),
-(8, 'Malaysia', 1, '2019-09-25 06:40:15', '2019-10-02 08:26:21'),
-(10, 'Myanmar', 1, '2019-09-25 06:40:44', '2019-10-02 08:26:32'),
-(15, 'Nepal', 1, '2019-10-02 08:22:52', '2019-10-02 08:27:14'),
-(17, 'Singapore', 1, '2019-10-02 08:26:51', '2019-10-02 08:27:23'),
-(18, 'Thailand', 1, '2019-10-02 08:27:31', '2019-10-02 08:27:31');
+INSERT INTO `admin_countries` (`id`, `country_name`, `country_code`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Bangladesh', '+880', 1, '2019-10-07 09:01:54', '2019-10-07 09:01:54'),
+(2, 'Pakistan', '+66', 1, '2019-10-08 03:15:28', '2019-10-08 03:15:28');
 
 -- --------------------------------------------------------
 
@@ -177,7 +176,39 @@ INSERT INTO `admin_districts` (`id`, `district_name`, `country_id`, `status`, `c
 (13, 'Khulna', 1, '1', '2019-10-02 08:30:40', '2019-10-02 08:30:40'),
 (14, 'Rajshahi', 1, '1', '2019-10-02 08:30:52', '2019-10-02 08:30:52'),
 (15, 'Rongpur', 1, '1', '2019-10-02 08:31:08', '2019-10-02 08:31:08'),
-(16, 'Dinajpur', 1, '1', '2019-10-02 08:31:24', '2019-10-02 08:31:24');
+(16, 'Dinajpur', 1, '1', '2019-10-02 08:31:24', '2019-10-02 08:31:24'),
+(17, 'Thakurgaon', 1, '1', '2019-10-08 03:40:18', '2019-10-08 03:40:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_schools`
+--
+
+CREATE TABLE `admin_schools` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `school_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_house` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_road` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_nears_land` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `school_area` int(11) DEFAULT NULL,
+  `school_p_station` int(11) DEFAULT NULL,
+  `school_p_city` int(11) DEFAULT NULL,
+  `school_p_district` int(11) NOT NULL,
+  `school_p_country` int(11) NOT NULL,
+  `website` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `admin_schools`
+--
+
+INSERT INTO `admin_schools` (`id`, `school_name`, `school_address`, `school_house`, `school_road`, `school_nears_land`, `school_area`, `school_p_station`, `school_p_city`, `school_p_district`, `school_p_country`, `website`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'DSFSDFSDF', 'Kuala lumpur, Malaysia', 'Kuala lumpur, Malaysia', 'board', 'Kuala Lumpur', 33, 65, 5, 17, 1, 'http://www.codepopular.com', 1, '2019-10-08 06:03:56', '2019-10-09 00:05:31');
 
 -- --------------------------------------------------------
 
@@ -203,8 +234,8 @@ INSERT INTO `admin_subjects` (`id`, `subject_name`, `board_id`, `class_id`, `sta
 (15, 'IGCSE Economics 4EC1', '10', NULL, 1, '2019-09-24 06:20:11', '2019-10-01 03:52:54'),
 (16, 'IGCSE English as a Second Language (ESL)', '10', NULL, 1, '2019-09-24 06:20:21', '2019-10-01 03:42:17'),
 (17, 'IGCSE Urdu 4UR0', '10', NULL, 1, '2019-09-24 06:20:28', '2019-10-01 04:28:53'),
-(18, 'IGCSE Arabic 4AA1', '10', NULL, 1, '2019-09-24 06:20:45', '2019-10-01 04:29:10'),
-(19, 'IGCSE Art and Design 4FA1', '10', NULL, 1, '2019-09-24 06:20:51', '2019-10-01 04:29:24'),
+(18, 'IGCSE Arabic 4AA1', '10', NULL, 1, '2019-09-24 06:20:45', '2019-10-10 04:19:48'),
+(19, 'IGCSE Art and Design 4FA1', '10', NULL, 1, '2019-09-24 06:20:51', '2019-10-10 04:19:51'),
 (20, 'IGCSE Bangla 4BA0/01', '10', NULL, 1, '2019-09-24 06:22:26', '2019-10-01 03:42:28'),
 (21, 'IGCSE Accounting 4AC1/01', '10', NULL, 1, '2019-09-24 06:22:44', '2019-10-01 00:46:17'),
 (22, 'IGCSE Bangladesh Studies 4BN0/01', '10', NULL, 1, '2019-09-24 06:23:01', '2019-10-01 00:47:36'),
@@ -481,6 +512,67 @@ INSERT INTO `admin_subjects` (`id`, `subject_name`, `board_id`, `class_id`, `sta
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin_years`
+--
+
+CREATE TABLE `admin_years` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `year` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `admin_years`
+--
+
+INSERT INTO `admin_years` (`id`, `year`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1980, 1, '2019-10-08 23:46:03', '2019-10-08 23:48:14'),
+(3, 1981, 1, '2019-10-08 23:49:08', '2019-10-08 23:49:08'),
+(4, 1982, 1, '2019-10-08 23:49:13', '2019-10-08 23:49:13'),
+(5, 1983, 1, '2019-10-08 23:49:19', '2019-10-08 23:49:25'),
+(6, 1979, 1, '2019-10-08 23:49:49', '2019-10-08 23:49:49'),
+(7, 1984, 1, '2019-10-08 23:51:21', '2019-10-08 23:51:21'),
+(8, 1985, 1, '2019-10-08 23:51:29', '2019-10-08 23:51:29'),
+(9, 1986, 1, '2019-10-08 23:51:36', '2019-10-08 23:51:36'),
+(10, 1987, 1, '2019-10-08 23:51:42', '2019-10-08 23:51:42'),
+(13, 1988, 1, '2019-10-08 23:52:15', '2019-10-08 23:52:15'),
+(14, 1989, 1, '2019-10-08 23:52:25', '2019-10-08 23:52:25'),
+(15, 1990, 1, '2019-10-08 23:52:40', '2019-10-08 23:52:40'),
+(16, 1991, 1, '2019-10-08 23:52:44', '2019-10-08 23:52:44'),
+(17, 1992, 1, '2019-10-08 23:53:08', '2019-10-08 23:53:08'),
+(18, 1993, 1, '2019-10-08 23:53:11', '2019-10-08 23:53:11'),
+(19, 1994, 1, '2019-10-08 23:53:18', '2019-10-08 23:53:18'),
+(20, 1995, 1, '2019-10-08 23:53:22', '2019-10-08 23:53:22'),
+(21, 1996, 1, '2019-10-08 23:53:26', '2019-10-08 23:53:26'),
+(22, 1997, 1, '2019-10-08 23:53:31', '2019-10-08 23:53:31'),
+(23, 1998, 1, '2019-10-08 23:53:36', '2019-10-08 23:53:36'),
+(24, 1999, 1, '2019-10-08 23:53:52', '2019-10-08 23:53:52'),
+(25, 2000, 1, '2019-10-08 23:54:03', '2019-10-08 23:54:03'),
+(26, 2001, 1, '2019-10-08 23:54:11', '2019-10-08 23:54:11'),
+(27, 2002, 1, '2019-10-08 23:54:15', '2019-10-08 23:54:15'),
+(28, 2003, 1, '2019-10-08 23:54:18', '2019-10-08 23:54:18'),
+(29, 2004, 1, '2019-10-08 23:54:26', '2019-10-08 23:54:26'),
+(30, 2005, 1, '2019-10-08 23:54:29', '2019-10-08 23:54:29'),
+(31, 2006, 1, '2019-10-08 23:54:32', '2019-10-08 23:54:32'),
+(32, 2007, 1, '2019-10-08 23:54:41', '2019-10-08 23:54:41'),
+(33, 2008, 1, '2019-10-08 23:54:45', '2019-10-08 23:54:45'),
+(34, 2009, 1, '2019-10-08 23:54:50', '2019-10-08 23:54:50'),
+(35, 2010, 1, '2019-10-08 23:54:57', '2019-10-08 23:54:57'),
+(36, 2011, 1, '2019-10-08 23:55:00', '2019-10-08 23:55:00'),
+(37, 2012, 1, '2019-10-08 23:55:04', '2019-10-08 23:55:04'),
+(38, 2013, 1, '2019-10-08 23:55:11', '2019-10-08 23:55:11'),
+(39, 2014, 1, '2019-10-08 23:55:14', '2019-10-08 23:55:14'),
+(40, 2015, 1, '2019-10-08 23:55:17', '2019-10-08 23:55:17'),
+(41, 2016, 1, '2019-10-08 23:55:20', '2019-10-08 23:55:20'),
+(42, 2017, 1, '2019-10-08 23:55:23', '2019-10-08 23:55:23'),
+(43, 2018, 1, '2019-10-08 23:55:26', '2019-10-08 23:55:26'),
+(44, 2019, 1, '2019-10-08 23:55:29', '2019-10-08 23:55:29');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -575,19 +667,22 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2019_09_19_061856_create_admin_boards_table', 4),
 (14, '2019_09_20_083309_create_admin_districts_table', 5),
 (15, '2019_09_20_114803_create_police_stations_table', 6),
-(17, '2019_09_21_024724_create_admin_countries_table', 7),
 (19, '2019_09_23_055245_create_user_roles_table', 8),
 (29, '2014_10_12_000000_create_users_table', 9),
 (36, '2019_09_26_072755_create_techer_educations_table', 10),
 (40, '2019_09_25_073405_create_teacher_profiles_table', 12),
 (41, '2019_09_27_091123_create_teacher_tranings_table', 12),
-(42, '2019_09_26_101515_create_teaching_places_table', 13),
 (46, '2019_10_01_054218_create_admin_cities_table', 15),
 (47, '2019_10_02_042519_create_guardian_profiles_table', 15),
 (48, '2019_10_02_064752_create_admin_areas_table', 15),
 (49, '2019_09_30_064133_create_student_profiles_table', 16),
 (51, '2019_10_04_113734_create_teacher_notices_table', 17),
-(52, '2019_10_05_084536_create_student_enrolls_table', 18);
+(52, '2019_10_05_084536_create_student_enrolls_table', 18),
+(53, '2019_09_21_024724_create_admin_countries_table', 19),
+(58, '2019_10_07_161002_create_admin_schools_table', 20),
+(60, '2019_09_26_101515_create_teaching_places_table', 21),
+(62, '2019_10_09_053217_create_admin_years_table', 22),
+(66, '2019_10_10_071053_create_payments_table', 23);
 
 -- --------------------------------------------------------
 
@@ -607,6 +702,37 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('admin@gmail.com', '$2y$10$g1gdcOjTwr1NiAHl71cQTumgeqlFxBPCXeBp/07IaRf66CLxIZcX6', '2019-10-03 06:05:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bkash_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bikash_tran_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_branch_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_slip_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slip_image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `amount` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `user_id`, `payment_type`, `bkash_no`, `bikash_tran_no`, `bank_name`, `bank_branch_name`, `payment_slip_no`, `slip_image`, `amount`, `date`, `status`, `created_at`, `updated_at`) VALUES
+(4, '48', 'Hand Cash', NULL, NULL, NULL, NULL, NULL, NULL, '500', '2019-10-22', 1, '2019-10-10 06:46:51', '2019-10-10 06:47:06'),
+(5, '48', 'Bikash', '01794939992', 'sdff3456534324', NULL, NULL, NULL, NULL, '1000', '2019-10-17', 1, '2019-10-11 04:15:06', '2019-10-11 05:02:36');
 
 -- --------------------------------------------------------
 
@@ -677,7 +803,10 @@ INSERT INTO `police_stations` (`id`, `police_station`, `city_id`, `status`, `cre
 (59, 'Uttara East', 1, 1, '2019-10-02 08:42:31', '2019-10-02 08:42:31'),
 (60, 'Uttara West', 1, 1, '2019-10-02 08:42:41', '2019-10-02 08:42:41'),
 (61, 'Vatara', 1, 1, '2019-10-02 08:42:50', '2019-10-02 08:42:50'),
-(62, 'Wari', 1, 1, '2019-10-02 08:43:02', '2019-10-02 08:43:02');
+(62, 'Wari', 1, 1, '2019-10-02 08:43:02', '2019-10-02 08:43:02'),
+(63, 'test', 3, 1, '2019-10-08 03:30:52', '2019-10-08 03:30:52'),
+(64, 'Baliadangi', 4, 1, '2019-10-08 03:40:56', '2019-10-08 03:40:56'),
+(65, 'Ranisonkoil', 5, 1, '2019-10-08 03:56:38', '2019-10-08 03:56:38');
 
 -- --------------------------------------------------------
 
@@ -702,7 +831,10 @@ CREATE TABLE `student_enrolls` (
 
 INSERT INTO `student_enrolls` (`id`, `student_id`, `teacher_id`, `subject`, `message`, `status`, `created_at`, `updated_at`) VALUES
 (2, 49, 45, NULL, 'hello sir i want to join your class', 0, '2019-10-05 05:33:12', '2019-10-05 05:33:12'),
-(4, 51, 48, NULL, 'dfsdfdsf', 0, '2019-10-05 06:40:53', '2019-10-05 06:40:53');
+(5, 52, 45, NULL, 'hello sir i want to join your class', 0, '2019-10-07 08:11:17', '2019-10-07 08:11:17'),
+(6, 49, 48, NULL, 'hello sir i want to join your class', 1, '2019-10-07 08:13:50', '2019-10-12 05:16:36'),
+(7, 49, 48, NULL, 'i want to join your class\r\ni need it', 0, '2019-10-08 07:38:07', '2019-10-08 07:38:07'),
+(9, 49, 54, NULL, 'hello sir', 1, '2019-10-12 03:13:17', '2019-10-12 04:29:31');
 
 -- --------------------------------------------------------
 
@@ -751,8 +883,10 @@ CREATE TABLE `student_profiles` (
 --
 
 INSERT INTO `student_profiles` (`id`, `user_id`, `student_id`, `student_name`, `class_grade_level`, `group`, `subject_passing`, `contact_no`, `email`, `address`, `area`, `district`, `country`, `father_name`, `father_contact_no`, `father_email`, `father_address`, `Profession`, `father_nid`, `father_area`, `father_district`, `f_country`, `mother_name`, `mother_contact_no`, `mother_email`, `mother_address`, `mother_rofession`, `mother_nid`, `mother_area`, `mother_district`, `mother_country`, `created_at`, `updated_at`) VALUES
-(1, 49, 793738, NULL, NULL, NULL, NULL, '+88017800384688', 'student@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-10-05 07:41:01'),
-(2, 51, 380157, 'Md.Shamim Hasan', 'Class3', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 49, 793738, 'Shamim Hasan', 'Class 9', NULL, NULL, '+88017800384688', 'student@gmail.com', NULL, '14', 12, 1, 'Md Mozammel Houqwue', '017962552225', 'father@gmail.com', 'Kuala lumpur, Malaysia', 'Teacher', NULL, '18', NULL, 1, 'Momina', '065854552558', 'Mother@gmail.com', 'Kuala lumpur, Malaysia', 'House Wife', '84949849+8494', '16', '16', '1', NULL, '2019-10-15 04:14:43'),
+(3, 52, 645372, NULL, NULL, NULL, NULL, '+88017800384688', 'studeent@gmail.com', NULL, '14', 14, 1, 'md.shamim', NULL, NULL, 'dhaka, Bangladesh', NULL, NULL, NULL, NULL, 1, 'sdfdsf', '065854552558', 'Mother@gmail.com', 'dhaka, Bangladesh', 'House Wife', '84949849+8494', '16', '11', '1', NULL, '2019-10-15 04:09:00'),
+(5, 56, 298723, 'Shamim Hasan', 'Class 9', 'Science', 'English', '1774739992', 'stu@gmail.com', 'Kuala lumpur, Malaysia', '19', 11, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-10-12 07:00:09'),
+(6, 57, 988247, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -775,11 +909,9 @@ CREATE TABLE `teacher_notices` (
 --
 
 INSERT INTO `teacher_notices` (`id`, `user_id`, `n_title`, `n_des`, `status`, `created_at`, `updated_at`) VALUES
-(1, 48, 'Welcome Notice', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Itaque hic ipse iam pridem est reiectus; Lorem ipsum dolor sit amet, consectetur adipisci', 1, '2019-10-04 06:32:39', '2019-10-04 08:30:00'),
-(2, 48, 'Welcome Notice', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Itaque hic ipse iam pridem est reiectus; Lorem ipsum dolor sit amet, consectetur adipisci', 1, '2019-10-04 06:32:58', '2019-10-04 08:19:49'),
-(3, 48, 'New Examp Attention', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Itaque hic ipse iam pridem est reiectus; Lorem ipsum dolor sit amet, consectetur adipisci', 1, '2019-10-04 06:33:38', '2019-10-04 07:58:38'),
-(4, 48, 'New Batch Going to start', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Itaque hic ipse iam pridem est reiectus; Lorem ipsum dolor sit amet, consectetur adipisci', 1, '2019-10-04 06:33:51', '2019-10-04 08:12:18'),
-(5, 48, 'New Batch Going to start', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Itaque hic ipse iam pridem est reiectus; Lorem ipsum dolor sit amet, consectetur adipisci', 1, '2019-10-04 06:48:19', '2019-10-04 09:43:46');
+(5, 48, 'Vacation Notice', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Itaque hic ipse iam pridem est reiectus; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Laelius clamores sofòw ille so lebat Edere compellans gumias ex ordine nostros. Itaque hic ipse iam pridem est reiectus;', 1, '2019-10-04 06:48:19', '2019-10-12 02:26:31'),
+(11, 53, 'Admission Notice', 'Hello dear student our new admin session will be start in 2019 December', 1, '2019-10-09 05:41:55', '2019-10-12 01:21:40'),
+(13, 54, 'i want to teach student', 'hello i \'m a teacher. i want to join bb teacher. i want to teach student diffrent subject', 1, '2019-10-12 02:38:09', '2019-10-12 04:22:58');
 
 -- --------------------------------------------------------
 
@@ -809,7 +941,6 @@ CREATE TABLE `teacher_profiles` (
   `facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `twitter` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `other_link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `teaching_level` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `teaching_class` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `teaching_subject` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `teaching_since` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -824,8 +955,6 @@ CREATE TABLE `teacher_profiles` (
   `office_contact_number` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `teacher_education` int(11) DEFAULT NULL,
   `teaching_place` int(11) DEFAULT NULL,
-  `coaching_establish_date` date DEFAULT NULL,
-  `other_subject` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `about` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `traning` int(11) DEFAULT NULL,
   `master_degree_ins` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -849,9 +978,10 @@ CREATE TABLE `teacher_profiles` (
 -- Dumping data for table `teacher_profiles`
 --
 
-INSERT INTO `teacher_profiles` (`id`, `teacher_id`, `user_id`, `type`, `photo`, `name`, `init_name`, `birth_date`, `gender`, `address`, `area`, `city`, `police_station`, `district`, `country`, `phone`, `email`, `website`, `facebook`, `twitter`, `other_link`, `teaching_level`, `teaching_class`, `teaching_subject`, `teaching_since`, `present_school`, `present_joining_date`, `present_position`, `last_school`, `last_joning_date`, `last_position`, `total_student`, `routine`, `office_contact_number`, `teacher_education`, `teaching_place`, `coaching_establish_date`, `other_subject`, `about`, `traning`, `master_degree_ins`, `master_degree_major`, `master_degree_yar`, `bachelor_degree_ins`, `bachelor_degree_major`, `bachelor_degree_year`, `alavel_or_hsc_ins`, `alavel_or_hsc_major`, `alavel_or_hsc_year`, `olavel_or_ssc_ins`, `olavel_or_ssc_major`, `olavel_or_ssc_year`, `payment_status`, `created_at`, `updated_at`) VALUES
-(16, 151409, 45, 'all', 'photo_1570119340.jpg', 'The First Teacher', 'TFT', '2000-01-01', 'male', 'House 100, Road 100, Dhanmondi, Dhaka', 'Dhanmondi', 'Dhaka', '24', '10', '1', '+8801713015774', 'thefirstteacher@gmail.com', 'http://bpmontessori.com/', 'https://www.facebook.com/tariqkhanchy', 'https://www.facebook.com/tariqkhanchy', 'https://www.facebook.com/tariqkhanchy', 'A Level', '3', '109', '1990', 'ABC School', '2019-10-01', 'Teacher', 'DEF School', '2019-09-30', 'Teacher', NULL, NULL, NULL, NULL, NULL, '2019-10-03', 'All Subjects', 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.', NULL, 'CU', 'English', '1996', 'CU', 'English', '1995', 'CB', 'Humanities', '1987', 'CB', 'Humanities', '1985', 1, NULL, '2019-10-03 10:42:57'),
-(17, 276393, 48, 'freelance teacher', 'photo_1570181092.jpeg', 'Michel Carming', 'MC', '2019-10-17', 'male', 'Kuala lumpur, Malaysia', 'Dhaka', 'Dhaka', '29', '15', '10', '+8801794939991', 'admin@gmail.com', 'admin@gmail.com', 'www.facebook.com/shamimtpi', 'www.codepopular.com', 'www.bangladesh.com', 'A Level', '18', '18', '2006', 'reewrterwer', '2019-10-18', 'English head', 'werwr', '2019-10-21', 'Engslish head', NULL, NULL, NULL, NULL, NULL, '2019-10-09', 'Arabic (4AR0),Bengali 4BE0,Accounting (4AC0),Bangladesh Studies (4BN0)', 'My name is jhone brown. Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.my hsm', NULL, 'Dhaka Univercity', 'fdgdfg', '435435', 'pabna univercity', 'dfsdf', '5678', 'Dhaka University', 'Science', '1991', 'MA(Masters) University', 'Bangla', '2018', 1, NULL, '2019-10-05 02:39:51');
+INSERT INTO `teacher_profiles` (`id`, `teacher_id`, `user_id`, `type`, `photo`, `name`, `init_name`, `birth_date`, `gender`, `address`, `area`, `city`, `police_station`, `district`, `country`, `phone`, `email`, `website`, `facebook`, `twitter`, `other_link`, `teaching_class`, `teaching_subject`, `teaching_since`, `present_school`, `present_joining_date`, `present_position`, `last_school`, `last_joning_date`, `last_position`, `total_student`, `routine`, `office_contact_number`, `teacher_education`, `teaching_place`, `about`, `traning`, `master_degree_ins`, `master_degree_major`, `master_degree_yar`, `bachelor_degree_ins`, `bachelor_degree_major`, `bachelor_degree_year`, `alavel_or_hsc_ins`, `alavel_or_hsc_major`, `alavel_or_hsc_year`, `olavel_or_ssc_ins`, `olavel_or_ssc_major`, `olavel_or_ssc_year`, `payment_status`, `created_at`, `updated_at`) VALUES
+(16, 151409, 45, 'all', 'photo_1570119340.jpg', 'The First Teacher', 'TFT', '2000-01-01', 'male', 'House 100, Road 100, Dhanmondi, Dhaka', 'Dhanmondi', 'Dhaka', '24', '10', '1', '+8801713015774', 'thefirstteacher@gmail.com', 'http://bpmontessori.com/', 'https://www.facebook.com/tariqkhanchy', 'https://www.facebook.com/tariqkhanchy', 'https://www.facebook.com/tariqkhanchy', '3', '261', '1990', 'ABC School', '2019-10-01', 'Teacher', 'DEF School', '2019-09-30', 'Teacher', NULL, NULL, NULL, NULL, NULL, 'Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.', NULL, 'CU', 'English', '1996', 'CU', 'English', '1995', 'CB', 'Humanities', '1987', 'CB', 'Humanities', '1985', 1, NULL, '2019-10-11 04:38:26'),
+(17, 276393, 48, 'house tutor', 'photo_1570539117.jpeg', 'Michel Carming', 'MC', '2019-11-22', 'male', 'Kuala lumpur, Malaysia', 'Dhak', 'Dhaka', '25', '15', '1', '+8801794939991', 'admin@gmail.com', 'admin@gmail.com', 'www.facebook.com/shamimtpi', 'www.codepopular.com', 'www.bangladesh.com', '2,4,6,10,15', '18,20,96', '1992', '1', '2019-10-25', 'English head', '1', '2020-01-13', 'Engslish head', NULL, NULL, NULL, NULL, NULL, 'My name is jhone brown. Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero\'s De Finibus Bonorum et Malorum for use in a type specimen book.my hsm', NULL, 'Dhaka Univercity', 'fdgdfg', '435435', 'pabna univercity', 'dfsdf', '5678', 'Dhaka University', 'Science', '1991', 'MA(Masters) University', 'Bangla', '2018', 1, NULL, '2019-10-12 06:44:46'),
+(19, 612463, 54, NULL, 'photo_1570869340.png', 'teacher3', 'tc', '2019-10-09', 'male', 'Kuala lumpur, Malaysia', 'Dhaka', 'Dhaka', '30', '10', '1', '+8801794939992', 'teacher3@gmail.com', 'http://www.codepopular.com', 'www.facebook.com/shamimtpi', 'htpp://www.codepopular.com', 'https://twitter.com', '', '', '1990', '1', '2019-10-17', 'English head', '1', '2019-10-23', 'Engslish head', NULL, NULL, NULL, NULL, NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\n\r\nWhy do we use it?\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', NULL, 'Dhaka Univercity', 'fdgdfg', '435435', 'bd  univercity', 'HSC', 'Malaysia', 'amar vercity', 'sdfsdf', '23424', 'sfsdfdsf', 'sdfsdfdsf', '2018', 1, NULL, '2019-10-12 06:44:48');
 
 -- --------------------------------------------------------
 
@@ -883,7 +1013,7 @@ INSERT INTO `teacher_tranings` (`id`, `user_id`, `traning_date`, `qualification`
 (2, 28, '2019-09-10', 'Graphic Designer', 'Graphic Design', '2 Month', 'Laravel firm', 'Laravel code', 'Hasan', 'sdfsdf', '2019-09-27 21:10:14', '2019-09-27 21:10:14'),
 (3, 30, '2019-09-11', 'Pearson Edexcel', 'Translation', '3 Days', 'Reapson Edexcel, Dhaka', 'Peapson Edexcel, Dhaka', 'Shahana Hossain', 'BRAC, Dhaka', '2019-09-27 22:48:46', '2019-09-27 22:48:46'),
 (4, 45, '2019-01-01', 'CELTA', 'Teaching English', '4 Weeks', 'IH, Bangkok', 'IH, Bangkok', 'Judy Roth', 'Bangkok', '2019-10-03 10:44:04', '2019-10-03 10:44:04'),
-(5, 48, '2019-10-16', 'Web Developer', 'Laravel', '2 Month', 'BITM', 'Bangladesh ICT', 'Mohammod Ali', 'Karwanbazar', '2019-10-05 01:42:24', '2019-10-05 01:42:24');
+(5, 48, '2019-10-14', 'Web Developer', 'Laravel', '2 Month', 'BITM', 'Bangladesh ICT', 'Mohammod Ali', 'Karwanbazar', '2019-10-05 01:42:24', '2019-10-10 00:28:38');
 
 -- --------------------------------------------------------
 
@@ -933,13 +1063,15 @@ CREATE TABLE `teaching_places` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
   `coaching_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coaching_establish_date` date DEFAULT NULL,
+  `other_subject` mediumtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `house` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `road_no` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Landmark` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_office` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `map` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `area` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `area` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `p_station` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `district` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -951,13 +1083,8 @@ CREATE TABLE `teaching_places` (
 -- Dumping data for table `teaching_places`
 --
 
-INSERT INTO `teaching_places` (`id`, `user_id`, `coaching_name`, `house`, `road_no`, `Landmark`, `post_office`, `post_code`, `map`, `area`, `p_station`, `district`, `country`, `created_at`, `updated_at`) VALUES
-(1, 30, 'Creative Education', '338/ A, Danmondi', '34/454', 'Katasur', 'Mohammodpur', '1206', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.1703918980825!2d90.38039151452398!3d23.74130248459384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a55cd36f%3A0xfcc5b021faff43ea!2sCreative%20IT%20Institute!5e0!3m2!1sen!2sbd!4v1568804774459!5m2!1sen!2sbd\" width=\"100%\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\"></iframe>', '9', '10', '7', '3', '2019-09-27 21:16:41', '2019-09-29 23:27:28'),
-(2, 28, 'New caocaching', 'hello house', 'Karasur raload 244/A', 'landmark area', 'Mohammodpur', '3434', 'Pur google map address here', '11', '9', '7', '10', '2019-09-27 21:17:30', '2019-09-29 21:21:48'),
-(3, 30, 'this is my coaching place', 'house no', 'Begom Rokeya / 25', 'landimark', 'Mohammodpur', 'post ocde', 'sdfsdfdsf', '10', '11', '7', '12', '2019-09-27 21:26:22', '2019-09-29 23:27:35'),
-(4, 28, 'United Coaching', 'Mohammoadpur, Katasur', '282/A', 'Mohammodpur', 'Mohammadpur', '1200', 'google map address here', '11', '', '7', '13', '2019-09-29 20:43:28', '2019-09-29 20:44:31'),
-(5, 45, 'The Study Town', '5', '5', 'City Hospital', 'Mohammedpur', '1205', 'https://www.google.com/maps/place/The+Study+Town/@23.7549535,90.3665212,15z/data=!4m5!3m4!1s0x0:0xa5d3d3365361d82d!8m2!3d23.7549535!4d90.3665212', '24', '24', '10', '1', '2019-10-03 10:41:59', '2019-10-03 10:41:59'),
-(6, 48, 'bangladesh coaching center', 'bangladesh', '3245345/A', 'Landmar here', '34324', '34343', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.1703918980825!2d90.38039151452398!3d23.74130248459384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a55cd36f%3A0xfcc5b021faff43ea!2sCreative%20IT%20Institute!5e0!3m2!1sen!2sbd!4v1568804774459!5m2!1sen!2sbd\" width=\"100%\" height=\"150\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\"></iframe>', '27', '26', '12', '10', '2019-10-04 03:42:01', '2019-10-05 01:43:09');
+INSERT INTO `teaching_places` (`id`, `user_id`, `coaching_name`, `coaching_establish_date`, `other_subject`, `house`, `road_no`, `Landmark`, `post_office`, `post_code`, `map`, `area`, `p_station`, `district`, `country`, `created_at`, `updated_at`) VALUES
+(5, 48, 'bangladesh coaching center', '2019-10-09', 'IGCSE Economics 4EC1,IGCSE Urdu 4UR0,IGCSE Urdu 4UR0', 'hello', '32423432/admin', 'landmark', '234324', '1234', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.1703918980825!2d90.38039151452398!3d23.74130248459384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a55cd36f%3A0xfcc5b021faff43ea!2sCreative%20IT%20Institute!5e0!3m2!1sen!2sbd!4v1568804774459!5m2!1sen!2sbd\" width=\"100%\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\"></iframe>', '30', '29', '17', '1', '2019-10-09 04:29:00', '2019-10-09 05:36:38');
 
 -- --------------------------------------------------------
 
@@ -1010,12 +1137,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `phone`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
 (2, 'admin', 'admin@gmail.com', 4, '+8801794939991', NULL, '$2y$10$P9H6APqXgkG/FtE7Jat/SOvmv4OFF9sr0spcXMxa42eLVLc6v5.Bi', NULL, 1, '2019-09-25 06:36:50', '2019-09-25 06:36:50'),
-(45, 'The First Teacher', 'thefirstteacher@gmail.com', 2, '+8801713015774', NULL, '$2y$10$T43xhgXttwMVJWG6e3aPkub6JfFW4a1VpCXF47MPAvypXltuB5gaK', NULL, 1, '2019-10-03 10:13:44', '2019-10-03 10:13:44'),
-(46, 'The First Student', 'thefirststudent@gmail.com', 1, '+8801713015773', NULL, '$2y$10$pBkFiTYUUMN/Hh2mePAYNev34HMmH43ixL.b4sdMev83MDdKmPR4y', NULL, 1, '2019-10-03 21:18:38', '2019-10-03 21:18:38'),
-(48, 'teacher', 'teacher@gmail.com', 2, '23423432432432', NULL, '$2y$10$W.5M3xtKJhrOgq7NzDPGl.8VdT8pmf00/jXdOnf/sx9Wosdlndtfi', NULL, 1, '2019-10-04 03:22:34', '2019-10-04 03:22:34'),
-(49, 'student', 'student@gmail.com', 1, '+88017800384688', NULL, '$2y$10$/63odgEe6Wh9HIJLaE5s/.puNIn32zpsUryWITozDEyTonj4s6rPK', NULL, 1, '2019-10-04 04:51:26', '2019-10-04 04:51:26'),
-(50, 'Guardian', 'guardian@gmail.com', 3, '+8801780038688', NULL, '$2y$10$ztEAHV868MC4Y3bfayiqJeGE3gQAiY/1fvQ4CQYXIlQRtXdheXDqm', NULL, 1, '2019-10-05 03:23:45', '2019-10-05 03:23:45'),
-(51, 'student2', 'student2@gmail.com', 1, '23423424234', NULL, '$2y$10$uqTcoX3qaCtfmcMXFYtyUOBoTM4VdRVeDp7Ulc7DpejAeDHIJ9JTu', NULL, 1, '2019-10-05 06:10:16', '2019-10-05 06:10:16');
+(45, 'The First Teacher', 'thefirstteacher@gmail.com', 2, '+8801713015774', NULL, '$2y$10$T43xhgXttwMVJWG6e3aPkub6JfFW4a1VpCXF47MPAvypXltuB5gaK', NULL, 1, '2019-10-03 10:13:44', '2019-10-10 05:06:07'),
+(46, 'The First Student', 'thefirststudent@gmail.com', 1, '+8801713015773', NULL, '$2y$10$pBkFiTYUUMN/Hh2mePAYNev34HMmH43ixL.b4sdMev83MDdKmPR4y', NULL, 1, '2019-10-03 21:18:38', '2019-10-15 03:56:27'),
+(48, 'teacher', 'teacher@gmail.com', 2, '23423432432432', NULL, '$2y$10$W.5M3xtKJhrOgq7NzDPGl.8VdT8pmf00/jXdOnf/sx9Wosdlndtfi', NULL, 1, '2019-10-04 03:22:34', '2019-10-10 03:49:26'),
+(49, 'student', 'student@gmail.com', 1, '+88017800386878', NULL, '$2y$10$/63odgEe6Wh9HIJLaE5s/.puNIn32zpsUryWITozDEyTonj4s6rPK', NULL, 1, '2019-10-04 04:51:26', '2019-10-12 04:10:38'),
+(50, 'Guardian', 'guardian@gmail.com', 3, '+8801780038688', NULL, '$2y$10$ztEAHV868MC4Y3bfayiqJeGE3gQAiY/1fvQ4CQYXIlQRtXdheXDqm', NULL, 1, '2019-10-05 03:23:45', '2019-10-12 00:41:14'),
+(52, 'reju', 'studeent@gmail.com', 1, '+88017800384688', NULL, '$2y$10$oWs4Ag8EXnL7MITvuOgzm.fnmHy12MRXeRaEMnEFchhBEl3oSL3KG', NULL, 1, '2019-10-07 07:59:26', '2019-10-12 06:17:52'),
+(54, 'teacher3', 'teacher3@gmail.com', 2, '1794939992', NULL, '$2y$10$3L5f8rFXieXf6e/4yeVSruT0WHB7IlFSono2doK1Aob62eUHBbTrO', NULL, 1, '2019-10-12 02:34:50', '2019-10-12 02:34:50'),
+(56, 'dfgfdg', 'stu@gmail.com', 1, '1774739992', NULL, '$2y$10$Hgl219/KWKhxXF8nG209t.K4De0RcbhutDwXu8wcNQ8DS9kgj6.La', NULL, 1, '2019-10-12 06:58:34', '2019-10-12 06:58:34'),
+(57, 'todaystudent', 'todaystudent@gmail.com', 1, '+8801712421973', NULL, '$2y$10$nuEsiQQX3NcwL.f2AddlHuBU1Vmxc1cm7Ws7z5DHQbpNV/a01845W', NULL, 1, '2019-10-15 04:25:27', '2019-10-15 04:25:27');
 
 -- --------------------------------------------------------
 
@@ -1076,9 +1206,21 @@ ALTER TABLE `admin_districts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `admin_schools`
+--
+ALTER TABLE `admin_schools`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admin_subjects`
 --
 ALTER TABLE `admin_subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin_years`
+--
+ALTER TABLE `admin_years`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1104,6 +1246,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `police_stations`
@@ -1181,7 +1329,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `admin_areas`
 --
 ALTER TABLE `admin_areas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `admin_boards`
@@ -1193,25 +1341,37 @@ ALTER TABLE `admin_boards`
 -- AUTO_INCREMENT for table `admin_cities`
 --
 ALTER TABLE `admin_cities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `admin_countries`
 --
 ALTER TABLE `admin_countries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `admin_districts`
 --
 ALTER TABLE `admin_districts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `admin_schools`
+--
+ALTER TABLE `admin_schools`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `admin_subjects`
 --
 ALTER TABLE `admin_subjects`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
+
+--
+-- AUTO_INCREMENT for table `admin_years`
+--
+ALTER TABLE `admin_years`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1229,37 +1389,43 @@ ALTER TABLE `guardian_profiles`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `police_stations`
 --
 ALTER TABLE `police_stations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `student_enrolls`
 --
 ALTER TABLE `student_enrolls`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `student_profiles`
 --
 ALTER TABLE `student_profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `teacher_notices`
 --
 ALTER TABLE `teacher_notices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `teacher_profiles`
 --
 ALTER TABLE `teacher_profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `teacher_tranings`
@@ -1277,7 +1443,7 @@ ALTER TABLE `teaching_classes`
 -- AUTO_INCREMENT for table `teaching_places`
 --
 ALTER TABLE `teaching_places`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `techer_educations`
@@ -1289,7 +1455,7 @@ ALTER TABLE `techer_educations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `user_roles`

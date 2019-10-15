@@ -19,17 +19,23 @@
 
 Route::get('/', 'frontend\websiteController@index');
 
+
   // TEACHER SEARCH ROUTE
 Route::any('serach','frontend\searchController@index')->name('search');
+Route::any('search-by-subject/{subject_name}','frontend\searchController@search_by_subject')->name('search_by_subject');
 
 // website country, dis, city, area_deactive
 
 Route::get('mycountry', 'frontend\websiteController@mycountry');
 Route::get('mydistrict/{id}','frontend\websiteController@mydistrict')->name('mydistrict');
 Route::get('mycity/{id}','frontend\websiteController@mycity')->name('mycity');
+Route::get('my_police_statoin/{id}','frontend\websiteController@my_police_statoin')->name('my_police_statoin');
+
+Route::get('myarea/{id}','frontend\websiteController@myarea')->name('myarea');
 
 
 Route::group(['middleware' => 'auth'],function(){
+   
    Route::post('student_enroll', 'frontend\enrollController@student_enroll')->name('student_enroll');
 });
 
@@ -82,8 +88,34 @@ Route::get('teacher-class', 'frontend\teacherController@teacher_class')->name('t
 Route::get('teacher-subscription', 'frontend\teacherController@teacher_subscription')->name('teacher_subscription');
 Route::get('teacher_deshboard', 'frontend\teacherController@teacher_deshboard')->name('teacher_deshboard');
 
+Route::get('pending_student/{id}', 'frontend\teacherController@pending_student')->name('pending_student');
+Route::get('approved_student/{id}', 'frontend\teacherController@approved_student')->name('approved_student');
+
+// student indivisual sms
+Route::post('student_indivisual_sms', 'frontend\teacherController@student_indivisual_sms')->name('student_indivisual_sms');
 Route::get('student_enroll_list', 'frontend\teacherController@student_enroll_list')->name('student_enroll_list');
 Route::resource('teacher','frontend\teacherController');
+
+
+
+// teacher payment route
+
+Route::get('bikash', 'frontend\paymentController@bikash')->name('bikash');
+Route::post('bikash-payment', 'frontend\paymentController@bikash_payment')->name('bikash_payment');
+
+Route::get('bank', 'frontend\paymentController@bank')->name('bank');
+Route::post('bank-payment', 'frontend\paymentController@bank_payment')->name('bank_payment');
+
+Route::get('handcash', 'frontend\paymentController@handcash')->name('handcash');
+Route::post('cash_payment', 'frontend\paymentController@cash_payment')->name('cash_payment');
+
+
+Route::resource('payment', 'frontend\paymentController');
+
+
+
+
+
 
 Auth::routes();
 
@@ -116,6 +148,16 @@ Route::get('admin_board_deactive/{id}', 'backend\adminBoardController@admin_boar
 Route::get('admin_board_active/{id}', 'backend\adminBoardController@admin_board_active')->name('admin_board_active');
 Route::resource('admin_board', 'backend\adminBoardController');
 
+
+
+/**------------- ADMIN SCHOOL ---------------**/
+Route::get('admin_school_deactive/{id}', 'backend\adminSchoolController@admin_school_deactive')->name('admin_school_deactive');
+Route::get('admin_school_active/{id}', 'backend\adminSchoolController@admin_school_active')->name('admin_school_active');
+Route::resource('admin_school', 'backend\adminSchoolController');
+
+
+
+
 /**------------- ADMIN STUDENT ---------------**/
 Route::get('admin_student_deactive/{id}', 'backend\adminStudentController@admin_student_deactive')->name('admin_student_deactive');
 Route::get('admin_student_active/{id}', 'backend\adminStudentController@admin_student_active')->name('admin_student_active');
@@ -129,7 +171,7 @@ Route::resource('admin_teacher', 'backend\adminTeacherController');
 
 /**------------- ADMIN GUEARDIAN ---------------**/
 Route::get('admin_guardina_deactive/{id}', 'backend\adminGuardianController@admin_guardian_deactive')->name('admin_guardian_deactive');
-Route::get('admin_guardian_active/{id}', 'backend\adminGuardianController@admin_guardian_active')->name('admin_teacher_active');
+Route::get('admin_guardian_active/{id}', 'backend\adminGuardianController@admin_guardian_active')->name('admin_guardian_active');
 Route::resource('admin_guardian', 'backend\adminGuardianController');
 
 
@@ -162,7 +204,19 @@ Route::get('area_deactive/{id}', 'backend\adminAreaController@area_deactive')->n
 Route::get('area_active/{id}', 'backend\adminAreaController@area_active')->name('area_active');
 Route::resource('admin_area', 'backend\adminAreaController');
 
+/**-------------  YEAR ---------------**/
+Route::get('year_deactive/{id}', 'backend\adminYearController@year_deactive')->name('year_deactive');
+Route::get('year_active/{id}', 'backend\adminYearController@year_active')->name('year_active');
+Route::resource('admin_year', 'backend\adminYearController');
 
 
+
+/** ---------- ADMIN PAYMENT --------------**/
+
+
+Route::get('payment_deactive/{id}', 'backend\adminPaymentController@payment_deactive')->name('payment_deactive');
+Route::get('payment_active/{id}', 'backend\adminPaymentController@payment_active')->name('payment_active');
+
+Route::resource('admin_payment', 'backend\adminPaymentController');
 
 

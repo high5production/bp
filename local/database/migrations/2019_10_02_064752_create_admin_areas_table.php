@@ -21,7 +21,7 @@ class CreateAdminAreasTable extends Migration
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

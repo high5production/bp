@@ -17,12 +17,14 @@ class CreateTeachingPlacesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->string('coaching_name');
+            $table->date('coaching_establish_date')->nullable();
+            $table->mediumText('other_subject')->nullable();
             $table->string('house');
             $table->string('road_no');
             $table->string('Landmark');
             $table->string('post_office');
             $table->string('post_code');
-            $table->string('map');
+            $table->longText('map');
             $table->longText('area');
             $table->string('p_station');
             $table->string('district');

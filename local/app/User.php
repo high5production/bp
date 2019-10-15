@@ -39,6 +39,16 @@ class User extends Authenticatable
 
 
 
- 
+  public function bitnbits_teacher(){
+    return $this->hasOne('App\teacher_profile', 'user_id');
+  }
+
+  public function bitnbits_student(){
+     return $this->hasOne('App\student_profile', 'user_id');
+  }
+
+
+
+
 
 }

@@ -6,16 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use Session;
 use App\Models\admin_country;
 use App\Models\admin_district;
 use App\Models\police_station;
 use App\Models\teaching_class;
 use App\Models\admin_subject;
+use App\Models\admin_year;
+use App\Models\admin_school;
 use App\techer_education;
 use App\teacher_profile;
 use App\teaching_place;
 use App\teacher_traning;
 use App\student_enroll;
+
 use Image;
 
 class teacherController extends Controller
@@ -31,6 +35,7 @@ class teacherController extends Controller
      */
     public function teacher_deshboard(){
       $profile_id = Auth::user()->id;
+      $yaear = admin_year::where('status', 1)->get();
       $teacher_info = teacher_profile::where('user_id',$profile_id)->first();
       $allcountry = admin_country::where('status',1)->get();
       $getdis = admin_district::where('status',1)->get();
@@ -38,6 +43,7 @@ class teacherController extends Controller
       $allsubjects = admin_subject::where('status',1)->get();
       $get_police_station = police_station::where('status',1)->get();
       $teaching_places = teaching_place::where('user_id', $profile_id)->get();
+      $admin_school = admin_school::where('status', 1)->get();
       $teacher_tranings = teacher_traning::where('user_id', $profile_id)->get();
       return view('frontend.teacher_panel',compact(
         'allcountry',
@@ -48,7 +54,9 @@ class teacherController extends Controller
         'teaching_places',
         'allsubjects',
         'teacher_tranings',
-        'profile_id'
+        'admin_school',
+        'profile_id',
+        'yaear'
 
       ));
     }
@@ -59,11 +67,75 @@ class teacherController extends Controller
       return view('frontend.teacher_class');
    }
 
+
+
+
+
+   public function pending_student($id){
+        $enactive=student_enroll::where('status',1)->where('id',$id)->update([
+          'status' => 0,
+        ]);
+        return redirect()->back();
+    }
+      public function approved_student($id){
+          $active=student_enroll::where('status',0)->where('id',$id)->update([
+            'status' => 1,
+          ]);
+          return redirect()->back();
+      }
+
+
+
     public function student_enroll_list(){
           $profile_id = Auth::user()->id;
           $all_enroll_student = student_enroll::where('teacher_id', $profile_id)->get();
           return view('frontend.student_list', compact('all_enroll_student'));
     }
+
+    public function student_indivisual_sms(Request $request){
+      
+    $myArr = [
+     "from" => "BB Teacher",
+     "to" => $request->input('phone'),
+     "text" => $request->input('sms-message'),
+ 
+  ];
+   $data_json = json_encode($myArr);
+    $authorization = base64_encode('tariqkhan:Tkhan@123');
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Accept: application/json',"Authorization: Basic $authorization"));
+    //curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+    curl_setopt($ch, CURLOPT_URL, 'http://api.bulksms.icombd.com/restapi/sms/1/text');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $send = $response  = curl_exec($ch);
+    //var_dump(curl_getinfo($ch));
+    //var_dump($response);
+    if($send){
+      Session::flash('status', 'Message Has been Send');
+    }else{
+      Session::flash('error', 'Something Went Wrong Please try again');
+    }
+    curl_close($ch);
+
+    return redirect()->back();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+      }
 
 
     public function index()
@@ -129,6 +201,21 @@ class teacherController extends Controller
         $getdata = teacher_profile::where('user_id', $id)->first();
 
         $input =  $request->all();
+
+        // update phone and email
+    
+    
+
+
+         // multiselect array to string convert for class
+        $getclass = $request->input('teaching_class');
+        $classimplode = implode(',', (array)$getclass);
+        $input['teaching_class'] = $classimplode;  
+
+        // multiselect array to string convert for subject
+        $getsub = $request->input('teaching_subject');
+        $subim = implode(',', (array)$getsub);
+        $input['teaching_subject'] = $subim;
 
       $this->validate($request,[
            'routine' =>  'mimes:jpeg,jpg,png,gif,pdf|max:10000',

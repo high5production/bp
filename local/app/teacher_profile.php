@@ -29,7 +29,6 @@ class teacher_profile extends Model
             'facebook',
             'twitter',
             'other_link',
-            'teaching_level',
             'teaching_class',
             'teaching_subject',
             'teaching_since',
@@ -44,8 +43,6 @@ class teacher_profile extends Model
             'office_contact_number',
             'teacher_education',
             'teaching_place',
-            'coaching_establish_date',
-            'other_subject',
             'about',
             'traning',
              'master_degree_ins',
@@ -62,4 +59,33 @@ class teacher_profile extends Model
 	        'olavel_or_ssc_year'
 
     ];
+
+
+public function get_present_school(){
+   return $this->belongsTo('App\Models\admin_school', 'present_school');
+}
+public function get_last_school(){
+   return $this->belongsTo('App\Models\admin_school', 'last_school');
+}
+
+
+
+public function teacher_country(){
+   return $this->belongsTo('App\Models\admin_country','country');
+}
+public function teacher_district(){
+    return $this->belongsTo('App\Models\admin_district','district');
+}
+public function teacher_police_station(){
+   return $this->belongsTo('App\Models\police_station','police_station');
+}
+
+
+
+
+
+
+
+
+
 }

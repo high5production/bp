@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use DB;
-use app\teacher_profile;
+use App\teacher_profile;
+use App\Models\teaching_class;
 class adminTeacherController extends Controller
 {
     /**
@@ -16,21 +17,21 @@ class adminTeacherController extends Controller
      */
     public function index()
     {
-        $getdata = user::where('role',2)->get();
-        return view('backend.admin_teacher',compact('getdata'));
+        $teacher_data = user::where('role',2)->get();
+        return view('backend.teacher.admin_teacher',compact('teacher_data'));
     }
 
      public function admin_teacher_deactive($id){
-        $enactive=user::where('status',1)->where('id',$id)->update([
-          'status' => 0,
+        $enactive=teacher_profile::where('payment_status',1)->where('user_id',$id)->update([
+          'payment_status' => 0,
         ]);
         
         return redirect()->back();
       }
       public function admin_teacher_active($id){
-          $active=user::where('status',0)->where('id',$id)->update([
-            'status' => 1,
-          ]);
+        $active=teacher_profile::where('payment_status',0)->where('user_id',$id)->update([
+          'payment_status' => 1,
+        ]);
           return redirect()->back();
     }
     /**
@@ -62,7 +63,19 @@ class adminTeacherController extends Controller
      */
     public function show($id)
     {
-        //
+     $show = user::find($id);
+     // class
+     $classss = $show->bitnbits_teacher->teaching_class;
+     $view_class = explode(',', $classss);
+
+     // subject
+
+     $admin_sub = $show->bitnbits_teacher->teaching_subject;
+     $view_subject = explode(',', $admin_sub);
+     
+
+   
+     return view('backend.teacher.view-profile', compact('show','view_class', 'view_subject'));
     }
 
     /**
@@ -98,6 +111,7 @@ class adminTeacherController extends Controller
     {
         user::destroy($id);
         DB::table('teacher_profiles')->where('user_id', $id)->delete();
+        DB::table('payments')->where('user_id', $id)->delete();
         return redirect()->back();
 
     }

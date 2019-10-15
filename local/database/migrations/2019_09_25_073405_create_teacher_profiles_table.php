@@ -35,7 +35,6 @@ class CreateTeacherProfilesTable extends Migration
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('other_link')->nullable();
-            $table->string('teaching_level')->nullable();
             $table->string('teaching_class')->nullable();
             $table->string('teaching_subject')->nullable();
             $table->string('teaching_since')->nullable();
@@ -50,11 +49,8 @@ class CreateTeacherProfilesTable extends Migration
             $table->string('office_contact_number')->nullable();
             $table->integer('teacher_education')->nullable();
             $table->integer('teaching_place')->nullable();
-            $table->date('coaching_establish_date')->nullable();
-            $table->mediumText('other_subject')->nullable();
             $table->longText('about')->nullable();
             $table->integer('traning')->nullable();
-            
             $table->string('master_degree_ins')->nullable();
             $table->string('master_degree_major')->nullable();
             $table->string('master_degree_yar')->nullable();

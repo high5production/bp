@@ -22,8 +22,16 @@ body{
 }
 
 
-
-
+.form-control{
+	padding: 3px 7px
+}
+.primary_bg{
+	background: var(--main-bg-color) !important;
+	border:1px solid var(--main-bg-color);
+}
+.primary_bg:hover{
+	border:1px solid var(--main-bg-color);
+}
 
 .container{
 	max-width: 960px;
@@ -88,7 +96,7 @@ ul,li,ol{
 	margin-top:5px;
 }
 .mtb{
-	margin-top: 15% !important;
+	margin-top: 10% !important;
 	margin-bottom: 15% !important;
 }
 .mtb2{
@@ -129,7 +137,15 @@ ul,li,ol{
 }
 .login{
 	background: var(--main-bg-color) !important;
+	padding-left:2px;
 }
+
+span.log_leter {
+    color: #41bfb4;
+}
+
+
+
 /*************** home page **********************/
 .home-header-menu{
 	width: 100%;
@@ -536,15 +552,17 @@ ul,li,ol{
 	padding-bottom: 10px;
 	text-align: center;
 }
-.checkboxx{
-	margin-left: 36%;
-	padding-bottom: 5px;
+.checkboxx {
+    margin-left: 4%;
+    padding-bottom: 5px;
+    float: left;
+    margin-right: 16px;
 }
 .checkboxx label{
 	color: var(--main-head-color);
 }
 .personal{
-	width: 50%;
+	width: 80%;
 	margin: 0 auto;
 }
 .personal label{
@@ -873,16 +891,44 @@ ul,li,ol{
 .subscription_area label{
 	color: var(--main-head-color);
 }
-.subscription_area input{
-	color: var(--main-head-color);
-}
+
 .subscription_area img{
 	width: 100%
 }
+
+
+.payment_info{
+		text-align: center;
+		list-style: none;
+	}
+.payment_info li{
+		display: inline-block;
+	}
+.payment_info li a {
+	    display: inline-block;
+	    color: #000;
+	    margin: 4px;
+	    padding: 10px 19px;
+	    text-decoration: none;
+	    border: 1px solid #41bfb4;
+	    background: #41bfb4;
+	    color: #fff;
+	    border-radius: 5px;
+	}
+
+
+
+
+
+
+
+
 #navv{
 	margin: 0 auto;
 	width: 100%;
 }
+
+
 .notice h4{
 	text-align: center;
 	color: var(--main-head-color);
@@ -1118,3 +1164,67 @@ section .section-title {
 	font-size: 14px
 }
 
+
+.fstElement { font-size:12px; }
+.fstMultipleMode { display: block; }
+.fstMultipleMode .fstControls { width: 100%; }
+.attireMainNav{
+	display: none;
+}
+.fstResultItem.fstFocused,
+.fstResultItem.fstSelected,
+.fstChoiceItem{
+	background: #149a9a;
+	color:#fff;
+}
+.fstMultipleMode .fstQueryInputExpanded{
+	padding:0px;
+}
+
+
+
+
+
+
+
+/*input type date design */
+ input[type="date"] {
+    position: relative;
+}
+
+/* create a new arrow, because we are going to mess up the native one
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+input[type="date"]:after {
+    content: "\25BC"; 
+    color: #555;
+    padding: 0 5px;
+    display: none;
+}
+
+/* change color of symbol on hover */
+input[type="date"]:hover:after {
+    color: #bf1400;
+}
+
+/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+ /* adjust clear button */
+ input[type="date"]::-webkit-clear-button {
+     z-index: 1;
+ }

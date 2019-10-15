@@ -10,6 +10,8 @@ class teaching_place extends Model
    protected $fillable = [
             'user_id',
             'coaching_name',
+            'coaching_establish_date',
+            'other_subject',
             'house',
             'road_no',
             'Landmark',

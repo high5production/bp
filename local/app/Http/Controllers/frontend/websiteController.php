@@ -62,8 +62,17 @@ class websiteController extends Controller
                     ->pluck("city_name","id");
         return json_encode($cities);
     }
- 
-
+  public function my_police_statoin($id)
+    {
+        $p_station =   police_station::where("city_id",$id)
+                    ->pluck("police_station","id");
+        return json_encode($p_station);
+    }
+  public function myarea($id){
+     $my_area =   admin_area::where("police_station_id",$id)
+                    ->pluck("area_name","id");
+     return json_encode($my_area);
+  }
 
 
 

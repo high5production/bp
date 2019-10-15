@@ -22,6 +22,13 @@ class teachingPlaceController extends Controller
     
     public function coaching_place(Request $request){
         $input = $request->all();
+        // array to string convert
+        $getsub = $request->input('other_subject');
+        $subim = implode(',', $getsub);
+        $input['other_subject'] = $subim;
+         
+
+
         teaching_place::create($input);
         return redirect()->back();
    }
@@ -81,6 +88,10 @@ class teachingPlaceController extends Controller
     {
         $getdata = teaching_place::find($id);
         $input = $request->all();
+        $getsub = $request->input('other_subject');
+        $subim = implode(',', $getsub);
+        $input['other_subject'] = $subim;
+
         $getdata->fill($input)->save();
         return redirect()->back();
 

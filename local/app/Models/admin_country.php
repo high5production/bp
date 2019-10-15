@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class admin_country extends Model
 {
   protected $table = 'admin_countries';
-  protected $fillable = ['country_name','status'];
+  protected $fillable = ['country_name','country_code','status'];
 }

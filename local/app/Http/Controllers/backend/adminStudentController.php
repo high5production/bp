@@ -65,7 +65,7 @@ class adminStudentController extends Controller
      */
     public function show($id)
     {
-        $show = user::find($id);
+        $show = user::with('bitnbits_student')->find($id);
         return response()->json($show);
         return redirect()->back();
 
@@ -104,6 +104,7 @@ class adminStudentController extends Controller
     {
        user::destroy($id);
        DB::table('student_profiles')->where('user_id', $id)->delete();
+       DB::table('student_enrolls')->where('student_id', $id)->delete();
         return redirect()->back();
     }
 }

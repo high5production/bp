@@ -11,6 +11,7 @@ use App\teacher_profile;
 use App\student_profile;
 use App\guardian_profile;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -86,11 +87,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user= User::create([
+
+
+    $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'role' => $data['role'],
-            'phone' => $data['phone'],
+            'phone' => $data['countryCode'].$data['phone'],
             'password' => Hash::make($data['password']),
         ]);
  
@@ -113,7 +116,31 @@ class RegisterController extends Controller
           'guardian_id'=> mt_rand(1, 999999),
        ]);
      }
+
+
+    $myArr = [
+     "from" => "BB Teacher",
+     "to" => $data['countryCode'].$data['phone'],
+     "text" => "Congratulation! you have successfully registration. Please complete your profile to publish."
+ 
+  ];
+   $data_json = json_encode($myArr);
+    $authorization = base64_encode('tariqkhan:Tkhan@123');
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Accept: application/json',"Authorization: Basic $authorization"));
+    //curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+    curl_setopt($ch, CURLOPT_URL, 'http://api.bulksms.icombd.com/restapi/sms/1/text');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response  = curl_exec($ch);
+    //var_dump(curl_getinfo($ch));
+    //var_dump($response);
+    curl_close($ch);
+
+
     return $user;
+
      
     }
 }

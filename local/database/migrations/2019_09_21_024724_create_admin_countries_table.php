@@ -16,6 +16,7 @@ class CreateAdminCountriesTable extends Migration
         Schema::create('admin_countries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('country_name');
+            $table->string('country_code');
             $table->integer('status')->default('1');
             $table->timestamps();
         });

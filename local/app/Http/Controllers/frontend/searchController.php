@@ -15,13 +15,11 @@ class searchController extends Controller
      */
     public function index(){
       $sresult = $_GET['search'];
-      $all_t_profile = teacher_profile::where('payment_status',1)->
-
-      where('address','LIKE','%'.$sresult.'%')->
-      orWhere('name','LIKE','%'.$sresult.'%')->
-      orWhere('about','LIKE','%'.$sresult.'%')
-
-      ->get();
+      $all_t_profile = teacher_profile::query()->
+      where('payment_status',1)->
+      where('name','LIKE','%'.$sresult.'%')->
+      orWhere('address','LIKE','%'.$sresult.'%')->
+     get();
 
 
       if (count ( $all_t_profile ) > 0){
@@ -30,6 +28,28 @@ class searchController extends Controller
         return view('frontend.search-result',compact('all_t_profile','sresult'));
       }
      }
+
+
+
+     public function search_by_subject($subject_name){
+         $sresult = $subject_name;
+       
+         $all_t_profile = teacher_profile::where('payment_status',1)->
+          where('teaching_subject','LIKE','%'.$sresult.'%')
+          ->get();
+      
+
+      if (count ( $all_t_profile ) > 0){
+          return view('frontend.search-by-subject',compact('all_t_profile','sresult'));
+      }else{
+        return view('frontend.search-by-subject',compact('all_t_profile','sresult'));
+      }
+
+     }
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -60,7 +80,7 @@ class searchController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
