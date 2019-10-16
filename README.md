@@ -4,7 +4,8 @@ its has been Developed by High5 Digital
 
 
 <br />
-Developer: Shamim Hasan
-Contact  : md.shamimtpi@gmail.com
+Developer: Shamim Contac : md.shamimtpi@gmail.com <br />
+
+Phone : +8801794939992
 
 Desclaimer: Currently no permission to use this code for production. 
